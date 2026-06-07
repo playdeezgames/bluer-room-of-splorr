@@ -12,7 +12,7 @@ Public Class WorldModel
 
     Public ReadOnly Property IsInPlay As Boolean Implements IWorldModel.IsInPlay
         Get
-            Return False
+            Return Entity.Avatar IsNot Nothing
         End Get
     End Property
 

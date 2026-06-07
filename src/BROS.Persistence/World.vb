@@ -12,6 +12,13 @@ Public Class World
     End Sub
 
     Protected Overrides ReadOnly Property Data As BROSData
+
+    Public ReadOnly Property Avatar As ICharacter Implements IWorld.Avatar
+        Get
+            Return If(Data.AvatarId.HasValue, Character.Create(Data, Data.AvatarId.Value), Nothing)
+        End Get
+    End Property
+
     Private ReadOnly persister As IPersister
 
     Public Function Save(filename As String) As Task Implements IWorld.Save
