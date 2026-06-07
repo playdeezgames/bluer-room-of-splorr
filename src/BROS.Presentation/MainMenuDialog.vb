@@ -12,7 +12,7 @@ Friend Class MainMenuDialog
         Return DialogPrompt.CreateChoicePrompt(
             "Main Menu",
             DialogChoice.Create(Model.IsInPlay, "Continue Game", AddressOf Relaunch),
-            DialogChoice.Create(Not Model.IsInPlay, "Embark!", AddressOf Relaunch),
+            DialogChoice.Create(Not Model.IsInPlay, "Embark!", EmbarkDialog.Launch(Context, Model, AddressOf Relaunch)),
             DialogChoice.Create(Model.IsQuittable, "Quit", ConfirmDialog(Of IDisplayContext).Launch(Context, "Are you sure you want to quit?", ExitDialog, AddressOf Relaunch)))
     End Function
 

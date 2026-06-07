@@ -22,6 +22,10 @@ Public Class WorldModel
         End Get
     End Property
 
+    Public Sub Embark() Implements IWorldModel.Embark
+        Entity.Initialize()
+    End Sub
+
     Public Shared Async Function Create(quittable As Boolean, persister As IPersister) As Task(Of IWorldModel)
         Dim world As IWorld
         Try
