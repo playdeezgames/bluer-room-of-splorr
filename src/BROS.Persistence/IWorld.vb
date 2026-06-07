@@ -1,3 +1,4 @@
+﻿
 Imports TGGD.Persistence
 
 Public Interface IWorld
