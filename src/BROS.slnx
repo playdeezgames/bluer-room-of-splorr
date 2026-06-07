@@ -27,7 +27,7 @@
   <Folder Name="/_STUFF/">
     <File Path="../README.md" />
   </Folder>
+  <Project Path="BROS.Blazor/BROS.Blazor.csproj" Id="7ccf0d40-865e-411c-830a-7dcd51edf7a8" />
   <Project Path="BROS.Spectre/BROS.Spectre.vbproj" Id="03e3aca2-2f67-4cde-9b96-f54cd88812c5" />
   <Project Path="GMN.Blazor/GMN.Blazor.csproj" Id="081e2bb7-f034-4fdf-aded-45a6f6bc21b0" />
-  <Project Path="GMN.Spectre/GMN.Spectre.vbproj" Id="cfdda54e-880a-4322-aab5-05da3458796b" />
 </Solution>
