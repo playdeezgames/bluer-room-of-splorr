@@ -10,6 +10,18 @@ Public Class WorldModel
         MyBase.New(entity)
     End Sub
 
+    Public ReadOnly Property IsInPlay As Boolean Implements IWorldModel.IsInPlay
+        Get
+            Return False
+        End Get
+    End Property
+
+    Public ReadOnly Property IsQuittable As Boolean Implements IWorldModel.IsQuittable
+        Get
+            Return Entity.HasTag(Tags.QUITTABLE)
+        End Get
+    End Property
+
     Public Shared Async Function Create(quittable As Boolean, persister As IPersister) As Task(Of IWorldModel)
         Dim world As IWorld
         Try

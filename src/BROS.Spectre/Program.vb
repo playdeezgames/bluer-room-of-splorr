@@ -6,7 +6,7 @@ Imports TGGD.Presentation
 
 Module Program
     Sub Main(args As String())
-        Console.Title = "Guess My Number"
+        Console.Title = "The Bluer Room of SPLORR!!"
         Dim display As IDisplay = BROSDisplay.Create(True, New Persister).Result
         While display.Running
             AnsiConsole.Clear()

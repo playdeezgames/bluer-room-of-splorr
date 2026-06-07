@@ -11,7 +11,7 @@ Public Class TitleDialog
 
     Public Overrides Function Run() As IDialogPrompt
         Context.Render("The Bluer Room of SPLORR!!", newLine:=True)
-        Return DialogPrompt.CreateChoicePrompt("", DialogChoice.Create(True, "OK", Function() Nothing))
+        Return DialogPrompt.CreateChoicePrompt("", DialogChoice.Create(True, "OK", MainMenuDialog.Launch(Context, Model, ExitDialog)))
     End Function
 
     Protected Overrides Function Relaunch() As IDialog
