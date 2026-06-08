@@ -1,6 +1,4 @@
-﻿Imports TGGD.Provision
-
-Public Class CharacterData
-    Inherits EntityData
+﻿Public Class CharacterData
+    Inherits BROSEntityData
     Public Property LocationId As Guid
 End Class

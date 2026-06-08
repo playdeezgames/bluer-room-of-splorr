@@ -1,7 +1,5 @@
-﻿Imports TGGD.Persistence
-
-Public Interface ILocation
-    Inherits IEntity
+﻿Public Interface ILocation
+    Inherits IBROSEntity
     ReadOnly Property LocationId As Guid
-    Function CreateCharacter() As ICharacter
+    Function CreateCharacter(Optional initializer As Action(Of ICharacter) = Nothing) As ICharacter
 End Interface

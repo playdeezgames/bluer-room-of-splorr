@@ -38,7 +38,7 @@
 	case DialogPromptType.PROMPT_STRING:
 		<p>@display.Prompt.Title</p>
 		<EditForm Model="@inputModel" OnValidSubmit="HandleString">
-			<InputNumber @bind-Value="@inputModel.StringValue" />
+			<InputText @bind-Value="@inputModel.StringValue" />
 			<button type="submit">GO!</button>
 		</EditForm>
 		break;

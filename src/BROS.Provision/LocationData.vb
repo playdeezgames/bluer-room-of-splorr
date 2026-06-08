@@ -1,5 +1,3 @@
-﻿Imports TGGD.Provision
-
-Public Class LocationData
-    Inherits EntityData
+﻿Public Class LocationData
+    Inherits BROSEntityData
 End Class

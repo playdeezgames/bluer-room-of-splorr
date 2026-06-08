@@ -6,4 +6,8 @@ Friend Module EntityExtensions
     Friend Sub SetName(entity As IEntity, name As String)
         entity.SetMetadata(Metadatas.NAME, name)
     End Sub
+    <Extension>
+    Friend Function GetName(entity As IEntity) As String
+        Return entity.GetMetadata(Metadatas.NAME)
+    End Function
 End Module

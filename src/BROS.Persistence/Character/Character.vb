@@ -1,17 +1,21 @@
 ﻿Imports BROS.Provision
-Imports TGGD.Persistence
 
 Friend Class Character
-    Inherits Entity(Of CharacterData)
+    Inherits BROSEntity(Of CharacterData)
     Implements ICharacter
 
-    Public Sub New(data As BROSData, characterId As Guid)
-        Me._data = data
+    Public Sub New(world As IWorld, data As WorldData, characterId As Guid)
+        MyBase.New(world, data)
         Me.CharacterId = characterId
     End Sub
 
-    Private _data As BROSData
     Public ReadOnly Property CharacterId As Guid Implements ICharacter.CharacterId
+
+    Public ReadOnly Property Location As ILocation Implements ICharacter.Location
+        Get
+            Return Persistence.Location.Create(World, _data, Data.LocationId)
+        End Get
+    End Property
 
     Protected Overrides ReadOnly Property Data As CharacterData
         Get
@@ -19,7 +23,7 @@ Friend Class Character
         End Get
     End Property
 
-    Friend Shared Function Create(data As BROSData, characterId As Guid) As ICharacter
-        Return New Character(data, characterId)
+    Friend Shared Function Create(world As IWorld, data As WorldData, characterId As Guid) As ICharacter
+        Return New Character(world, data, characterId)
     End Function
 End Class

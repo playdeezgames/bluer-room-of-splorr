@@ -10,9 +10,4 @@ Friend Module WorldExtensions
             world.SetTag(Tags.QUITTABLE)
         End If
     End Sub
-    <Extension>
-    Friend Sub Initialize(world As IWorld)
-        world.Abandon()
-        BluerRoom.Initialize(world)
-    End Sub
 End Module
