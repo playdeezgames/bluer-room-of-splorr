@@ -5,7 +5,8 @@ Friend Module Processors
         New List(Of (String, String, Func(Of IWorld, IEnumerable(Of String), CommandProcessorResult))) From
         {
             ("menu", "Brings up the main menu.", AddressOf MenuCommandProcessor.Process),
-            ("help", "Shows context sensitive help.", AddressOf HelpCommandProcessor.Process)
+            ("help", "Shows context sensitive help.", AddressOf HelpCommandProcessor.Process),
+            ("look", "Describes the immediate area.", AddressOf LookCommandProcessor.Process)
         }
     Private ReadOnly processorTable As IReadOnlyDictionary(Of String, Func(Of IWorld, IEnumerable(Of String), CommandProcessorResult)) =
         commandList.ToDictionary(Function(x) x.Command.ToUpper, Function(x) x.Processor)
