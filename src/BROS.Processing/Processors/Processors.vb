@@ -10,7 +10,7 @@ Friend Module Processors
         }
     Private ReadOnly processorTable As IReadOnlyDictionary(Of String, Func(Of IWorld, IEnumerable(Of String), CommandProcessorResult)) =
         commandList.ToDictionary(Function(x) x.Command.ToUpper, Function(x) x.Processor)
-    Private ReadOnly processorHelp As IReadOnlyDictionary(Of String, String) =
+    Private ReadOnly processorHelp As Dictionary(Of String, String) =
         commandList.ToDictionary(Function(x) x.Command.ToUpper, Function(x) x.HelpText)
     Friend ReadOnly Property AllCommands As IEnumerable(Of String)
         Get
@@ -29,6 +29,6 @@ Friend Module Processors
         If processorHelp.TryGetValue(command.ToUpper, result) Then
             Return result
         End If
-        Return $"There ain't no `{command}` command, fool."
+        Return $"There ain't no `{command}` command, fool!"
     End Function
 End Module

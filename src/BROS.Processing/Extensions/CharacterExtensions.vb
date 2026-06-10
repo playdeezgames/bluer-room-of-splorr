@@ -10,6 +10,11 @@ Friend Module CharacterExtensions
     End Sub
     <Extension>
     Friend Sub DescribeLocation(character As ICharacter)
-        character.AddMessage($"{character.GetName()} is in {character.Location.GetName()}.", newLine:=True)
+        Dim characterName = character.GetName()
+        character.AddMessage($"{characterName} is in {character.Location.GetName()}.", newLine:=True)
+        Dim features = character.Location.Features
+        If features.Any Then
+            character.AddMessage($"Feature(s): {String.Join(", ", features.Select(Function(x) x.GetName()))}", newLine:=True)
+        End If
     End Sub
 End Module
