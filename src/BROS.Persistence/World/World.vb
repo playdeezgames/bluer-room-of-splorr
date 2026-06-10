@@ -30,8 +30,8 @@ Public Class World
 
     Private ReadOnly persister As IPersister
 
-    Public Function Save(filename As String) As Task Implements IWorld.Save
-        Throw New NotImplementedException()
+    Public Async Function Save(filename As String) As Task Implements IWorld.Save
+        Await persister.SaveAsync(filename, JsonSerializer.Serialize(Data))
     End Function
 
     Public Shared Function Create(data As WorldData, persister As IPersister) As IWorld
@@ -63,5 +63,9 @@ Public Class World
                             .Mood = mood,
                             .NewLine = newLine
                           })
+    End Sub
+
+    Public Sub ClearMessages() Implements IWorld.ClearMessages
+        Data.Messages.Clear()
     End Sub
 End Class

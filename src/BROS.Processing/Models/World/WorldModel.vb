@@ -48,7 +48,7 @@ Public Class WorldModel
 
     Public Sub ProcessCommand(command As String) Implements IWorldModel.ProcessCommand
         Dim tokens = command.ToUpper.Split(" "c).AsEnumerable()
-        Select Case CommandProcessor.Process(tokens)
+        Select Case CommandProcessor.Process(Entity, tokens)
             Case CommandProcessorResult.Invalid
                 Entity.AddMessage($"Invalid Command: `{command}`!", mood:=Moods.ERROR, newLine:=True)
             Case CommandProcessorResult.MenuRequest

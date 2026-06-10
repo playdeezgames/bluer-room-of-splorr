@@ -1,5 +1,7 @@
-﻿Friend Module MenuCommandProcessor
-    Friend Function Process(tokens As IEnumerable(Of String)) As CommandProcessorResult
+﻿Imports BROS.Persistence
+
+Friend Module MenuCommandProcessor
+    Friend Function Process(world As IWorld, tokens As IEnumerable(Of String)) As CommandProcessorResult
         If tokens.Any Then
             Return CommandProcessorResult.Invalid
         End If

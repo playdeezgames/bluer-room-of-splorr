@@ -8,4 +8,5 @@ Public Interface IWorld
     Function CreateLocation(Optional initializer As Action(Of ILocation) = Nothing) As ILocation
     ReadOnly Property Messages As IEnumerable(Of IMessage)
     Sub AddMessage(text As String, Optional mood As String = Nothing, Optional newLine As Boolean = False)
+    Sub ClearMessages()
 End Interface
