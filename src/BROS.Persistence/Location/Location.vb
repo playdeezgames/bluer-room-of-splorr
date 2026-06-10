@@ -25,10 +25,31 @@ Friend Class Location
             }
         Dim result = Character.Create(World, _data, characterId)
         initializer?.Invoke(result)
+        AddCharacter(result)
         Return result
     End Function
+
+    Private Sub AddCharacter(character As ICharacter)
+        Data.CharacterIds.Add(character.CharacterId)
+    End Sub
 
     Friend Shared Function Create(world As IWorld, data As WorldData, locationId As Guid) As ILocation
         Return New Location(world, data, locationId)
     End Function
+
+    Public Function CreateFeature(Optional initializer As Action(Of IFeature) = Nothing) As IFeature Implements ILocation.CreateFeature
+        Dim featureId = Guid.NewGuid
+        _data.Features(featureId) = New FeatureData With
+            {
+                .LocationId = LocationId
+            }
+        Dim result = Feature.Create(World, _data, featureId)
+        initializer?.Invoke(result)
+        AddFeature(result)
+        Return result
+    End Function
+
+    Private Sub AddFeature(feature As IFeature)
+        Data.FeatureIds.Add(feature.FeatureId)
+    End Sub
 End Class
