@@ -39,15 +39,11 @@ Friend Class Inventory
             {
                 .InventoryId = InventoryId
             }
+        Data.ItemIds.Add(itemId)
         Dim result = Item.Create(world, _data, itemId)
         initializer?.Invoke(result)
-        AddItem(result)
         Return result
     End Function
-
-    Private Sub AddItem(item As IItem)
-        Data.ItemIds.Add(item.ItemId)
-    End Sub
 
     Public Sub AddPrepositions(ParamArray prepositions() As String) Implements IInventory.AddPrepositions
         For Each preposition In prepositions
