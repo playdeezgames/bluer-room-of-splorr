@@ -428,6 +428,6 @@ FodyWeavers.xsd
 *.msm
 *.msp
 /pub-html
-/pub-linux/BROS.Spectre
-/pub-mac/BROS.Spectre
-/pub-windows/BROS.Spectre.exe
+/pub-linux
+/pub-mac
+/pub-windows
