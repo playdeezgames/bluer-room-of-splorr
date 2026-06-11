@@ -15,7 +15,9 @@ Friend Module HelpCommandProcessor
     Private Function ShowCommand(world As IWorld, command As String) As CommandProcessorResult
         world.ClearMessages()
         world.AddMessage($"Help for `{command}`:")
-        world.AddMessage(Processors.GetHelpText(command))
+        For Each helpText In Processors.GetHelpTexts(command)
+            world.AddMessage(helpText)
+        Next
         Return CommandProcessorResult.Processed
     End Function
 
