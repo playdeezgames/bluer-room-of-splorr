@@ -14,15 +14,15 @@ Friend Module HelpCommandProcessor
 
     Private Function ShowCommand(world As IWorld, command As String) As CommandProcessorResult
         world.ClearMessages()
-        world.AddMessage($"Help for `{command}`:", newLine:=True)
-        world.AddMessage(Processors.GetHelpText(command), newLine:=True)
+        world.AddMessage($"Help for `{command}`:")
+        world.AddMessage(Processors.GetHelpText(command))
         Return CommandProcessorResult.Processed
     End Function
 
     Private Function ShowCommands(world As IWorld) As CommandProcessorResult
         world.ClearMessages()
-        world.AddMessage("Available Commands:", newLine:=True)
-        world.AddMessage(String.Join(", ", Processors.AllCommands), newLine:=True)
+        world.AddMessage("Available Commands:")
+        world.AddMessage(String.Join(", ", Processors.AllCommands))
         Return CommandProcessorResult.Processed
     End Function
 End Module

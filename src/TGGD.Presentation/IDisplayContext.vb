@@ -2,5 +2,5 @@
     Sub Render(
                    Optional text As String = Nothing,
                    Optional mood As String = Nothing,
-                   Optional newLine As Boolean = False)
+                   Optional newLine As Boolean = True)
 End Interface

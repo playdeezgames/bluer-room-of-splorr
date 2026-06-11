@@ -50,7 +50,7 @@ Public Class WorldModel
         Dim tokens = command.ToUpper.Split(" "c).AsEnumerable()
         Select Case CommandProcessor.Process(Entity, tokens)
             Case CommandProcessorResult.Invalid
-                Entity.AddMessage($"Invalid Command: `{command}`!", mood:=Moods.ERROR, newLine:=True)
+                Entity.AddMessage($"Invalid Command: `{command}`!", mood:=Moods.ERROR)
             Case CommandProcessorResult.MenuRequest
                 RequestMenu()
         End Select

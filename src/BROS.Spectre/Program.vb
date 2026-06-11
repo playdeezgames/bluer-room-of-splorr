@@ -60,9 +60,9 @@ Module Program
     Private Sub RenderElement(element As IDisplayElement)
         Dim colorName As String = Nothing
         If element.Mood IsNot Nothing AndAlso moodColors.TryGetValue(element.Mood, colorName) Then
-            AnsiConsole.Write($"[{colorName}]{Markup.Escape(element.Text)}[/]")
+            AnsiConsole.Markup($"[{colorName}]{Markup.Escape(element.Text)}[/]")
         Else
-            AnsiConsole.Write(Markup.Escape(element.Text))
+            AnsiConsole.Markup(Markup.Escape(element.Text))
         End If
         If element.NewLine Then
             AnsiConsole.WriteLine()

@@ -1,8 +1,7 @@
 ﻿Imports BROS.Provision
 Imports TGGD.Persistence
-Imports TGGD.Provision
 
-Friend MustInherit Class BROSEntity(Of TData As EntityData)
+Friend MustInherit Class BROSEntity(Of TData As BROSEntityData)
     Inherits Entity(Of TData)
     Implements IBROSEntity
 
@@ -12,5 +11,15 @@ Friend MustInherit Class BROSEntity(Of TData As EntityData)
     Protected Sub New(world As IWorld, data As WorldData)
         Me.World = world
         Me._data = data
+    End Sub
+
+    Public Function HasNoun(noun As String) As Boolean Implements IBROSEntity.HasNoun
+        Return Data.Nouns.Contains(noun.ToUpper)
+    End Function
+
+    Public Sub AddNouns(ParamArray nouns() As String) Implements IBROSEntity.AddNouns
+        For Each noun In nouns
+            Data.Nouns.Add(noun.ToUpper)
+        Next
     End Sub
 End Class

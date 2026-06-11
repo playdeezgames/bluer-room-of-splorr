@@ -32,7 +32,7 @@ Public MustInherit Class Display
         _prompt = dialog?.Run()
     End Sub
 
-    Public Sub Render(Optional text As String = Nothing, Optional mood As String = Nothing, Optional newLine As Boolean = False) Implements IDisplayContext.Render
+    Public Sub Render(Optional text As String = Nothing, Optional mood As String = Nothing, Optional newLine As Boolean = True) Implements IDisplayContext.Render
         _elements.Add(DisplayElement.Create(text, mood, newLine))
     End Sub
 

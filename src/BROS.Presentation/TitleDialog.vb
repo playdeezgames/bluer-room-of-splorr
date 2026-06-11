@@ -10,7 +10,7 @@ Public Class TitleDialog
     End Sub
 
     Public Overrides Function Run() As IDialogPrompt
-        Context.Render("The Bluer Room of SPLORR!!", newLine:=True)
+        Context.Render("The Bluer Room of SPLORR!!")
         Return DialogPrompt.CreateChoicePrompt("", DialogChoice.Create(True, "OK", MainMenuDialog.Launch(Context, Model, ExitDialog)))
     End Function
 

@@ -56,7 +56,7 @@ Public Class World
         Return result
     End Function
 
-    Public Sub AddMessage(text As String, Optional mood As String = Nothing, Optional newLine As Boolean = False) Implements IWorld.AddMessage
+    Public Sub AddMessage(text As String, Optional mood As String = Nothing, Optional newLine As Boolean = True) Implements IWorld.AddMessage
         Data.Messages.Add(New MessageData With
                           {
                             .Text = text,

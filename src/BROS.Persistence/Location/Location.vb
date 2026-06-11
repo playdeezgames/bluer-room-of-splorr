@@ -64,4 +64,8 @@ Friend Class Location
     Private Sub AddFeature(feature As IFeature)
         Data.FeatureIds.Add(feature.FeatureId)
     End Sub
+
+    Public Function FindFeatureByNoun(noun As String) As IFeature Implements ILocation.FindFeatureByNoun
+        Return Features.FirstOrDefault(Function(x) x.HasNoun(noun))
+    End Function
 End Class

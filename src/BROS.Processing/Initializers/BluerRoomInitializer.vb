@@ -9,6 +9,8 @@ Friend Module BluerRoomInitializer
 
     Private Sub InitializeTable(feature As IFeature)
         feature.SetName("table")
+        feature.AddNouns("table")
+        feature.SetDescription("It is an old table that only wobbles a little bit.")
     End Sub
 
     Private Sub InitializeN00b(character As ICharacter)
