@@ -28,4 +28,10 @@ Friend Class Inventory
         initializer?.Invoke(result)
         Return result
     End Function
+
+    Public Sub AddPrepositions(ParamArray prepositions() As String) Implements IInventory.AddPrepositions
+        For Each preposition In prepositions
+            Data.Prepositions.Add(preposition.ToUpper)
+        Next
+    End Sub
 End Class

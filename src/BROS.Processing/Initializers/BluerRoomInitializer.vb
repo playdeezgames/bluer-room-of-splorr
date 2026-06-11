@@ -12,6 +12,7 @@ Friend Module BluerRoomInitializer
         feature.AddNouns("table")
         feature.SetDescription("It is an old table that only wobbles a little bit.")
         feature.Inventory.CreateItem(AddressOf InitializeNote)
+        feature.Inventory.AddPrepositions("on")
     End Sub
 
     Private Sub InitializeNote(item As IItem)
