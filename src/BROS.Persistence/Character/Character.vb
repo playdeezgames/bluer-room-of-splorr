@@ -1,7 +1,7 @@
 ﻿Imports BROS.Provision
 
 Friend Class Character
-    Inherits BROSEntity(Of CharacterData)
+    Inherits InventoryEntity(Of CharacterData)
     Implements ICharacter
 
     Public Sub New(world As IWorld, data As WorldData, characterId As Guid)

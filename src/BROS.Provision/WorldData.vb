@@ -7,4 +7,6 @@ Public Class WorldData
     Public Property Locations As New Dictionary(Of Guid, LocationData)
     Public Property Messages As New List(Of MessageData)
     Public Property Features As New Dictionary(Of Guid, FeatureData)
+    Public Property Inventories As New Dictionary(Of Guid, InventoryData)
+    Public Property Items As New Dictionary(Of Guid, ItemData)
 End Class

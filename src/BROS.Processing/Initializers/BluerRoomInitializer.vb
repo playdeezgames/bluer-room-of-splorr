@@ -11,6 +11,11 @@ Friend Module BluerRoomInitializer
         feature.SetName("table")
         feature.AddNouns("table")
         feature.SetDescription("It is an old table that only wobbles a little bit.")
+        feature.Inventory.CreateItem(AddressOf InitializeNote)
+    End Sub
+
+    Private Sub InitializeNote(item As IItem)
+        item.SetName("Note from Yermom")
     End Sub
 
     Private Sub InitializeN00b(character As ICharacter)

@@ -1,7 +1,7 @@
 ﻿Imports BROS.Provision
 
 Friend Class Feature
-    Inherits BROSEntity(Of FeatureData)
+    Inherits InventoryEntity(Of FeatureData)
     Implements IFeature
 
     Private Sub New(world As IWorld, data As WorldData, featureId As Guid)

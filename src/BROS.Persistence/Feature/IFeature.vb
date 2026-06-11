@@ -1,4 +1,4 @@
 ﻿Public Interface IFeature
-    Inherits IBROSEntity
+    Inherits IInventoryEntity
     ReadOnly Property FeatureId As Guid
 End Interface

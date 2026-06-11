@@ -1,4 +1,4 @@
 ﻿Public Class FeatureData
-    Inherits BROSEntityData
+    Inherits InventoryEntityData
     Public Property LocationId As Guid
 End Class
