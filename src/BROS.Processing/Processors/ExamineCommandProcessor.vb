@@ -36,6 +36,10 @@ Friend Module ExamineCommandProcessor
 
     Private Function ProcessExamineLocationFeature(character As ICharacter, feature As IFeature) As CommandProcessorResult
         character.DescribeFeature(feature)
+        Dim items = feature.Inventory.Items
+        If items.Any Then
+            character.AddMessage($"{feature.GetName()} contains {String.Join(", ", items.Select(Function(x) x.GetName()))}.")
+        End If
         Return CommandProcessorResult.Processed
     End Function
 End Module
