@@ -23,6 +23,12 @@ Friend Class Inventory
         End Get
     End Property
 
+    Public ReadOnly Property DefaultPreposition As String Implements IInventory.DefaultPreposition
+        Get
+            Return Data.Prepositions.First
+        End Get
+    End Property
+
     Friend Shared Function Create(world As IWorld, data As WorldData, inventoryId As Guid) As IInventory
         Return New Inventory(world, data, inventoryId)
     End Function
@@ -48,4 +54,12 @@ Friend Class Inventory
             Data.Prepositions.Add(preposition.ToUpper)
         Next
     End Sub
+
+    Public Function HasPreposition(preposition As String) As Boolean Implements IInventory.HasPreposition
+        Return Data.Prepositions.Contains(preposition.ToUpper)
+    End Function
+
+    Public Function FindItemByNoun(noun As String) As IItem Implements IInventory.FindItemByNoun
+        Return Items.FirstOrDefault(Function(x) x.HasNoun(noun))
+    End Function
 End Class

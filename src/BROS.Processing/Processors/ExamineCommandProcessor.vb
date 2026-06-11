@@ -20,25 +20,49 @@ Friend Module ExamineCommandProcessor
         Return ProcessExamineContainer(world.Avatar, containerNoun, preposition, noun)
     End Function
 
-    Private Function ProcessExamineContainer(character As ICharacter, containerNoun As String, preposition As String, noun As String) As CommandProcessorResult
+    Private Function ProcessExamineContainer(
+                                            character As ICharacter,
+                                            containerNoun As String,
+                                            preposition As String,
+                                            noun As String) As CommandProcessorResult
+        Dim feature = character.Location.FindFeatureByNoun(containerNoun)
+        If feature IsNot Nothing Then
+            Return ProcessExamineContainerFeature(character, feature, preposition, noun)
+        End If
         Return CommandProcessorResult.Invalid
+    End Function
+
+    Private Function ProcessExamineContainerFeature(character As ICharacter, feature As IFeature, preposition As String, noun As String) As CommandProcessorResult
+        If Not feature.Inventory.HasPreposition(preposition) Then
+            Return CommandProcessorResult.Invalid
+        End If
+        Return ProcessExamineItem(character, feature.Inventory.FindItemByNoun(noun), noun)
+    End Function
+
+    Private Function ProcessExamineItem(character As ICharacter, item As IItem, noun As String) As CommandProcessorResult
+        If item Is Nothing Then
+            character.AddMessage($"{character.GetName()} sees no `{noun}` here.")
+            Return CommandProcessorResult.Processed
+        End If
+        character.DescribeItem(item)
+        Return CommandProcessorResult.Processed
     End Function
 
     Private Function ProcessExamineLocation(character As ICharacter, noun As String) As CommandProcessorResult
         character.World.ClearMessages()
         Dim feature = character.Location.FindFeatureByNoun(noun)
         If feature IsNot Nothing Then
-            Return ProcessExamineLocationFeature(character, feature)
+            Return ProcessExamineFeature(character, feature)
         End If
         character.AddMessage($"{character.GetName()} sees no `{noun}` here.")
         Return CommandProcessorResult.Processed
     End Function
 
-    Private Function ProcessExamineLocationFeature(character As ICharacter, feature As IFeature) As CommandProcessorResult
+    Private Function ProcessExamineFeature(character As ICharacter, feature As IFeature) As CommandProcessorResult
         character.DescribeFeature(feature)
         Dim items = feature.Inventory.Items
         If items.Any Then
-            character.AddMessage($"{feature.GetName()} contains {String.Join(", ", items.Select(Function(x) x.GetName()))}.")
+            character.AddMessage($"Items {feature.Inventory.DefaultPreposition.ToLower} {feature.GetName()} include {String.Join(", ", items.Select(Function(x) x.GetName()))}.")
         End If
         Return CommandProcessorResult.Processed
     End Function

@@ -17,6 +17,8 @@ Friend Module BluerRoomInitializer
 
     Private Sub InitializeNote(item As IItem)
         item.SetName("Note from Yermom")
+        item.AddNouns("note")
+        item.SetDescription("The note reads: ""Hello! I woke up this morning to find that my tits were missing! I have gone to look them. - Yermom""")
     End Sub
 
     Private Sub InitializeN00b(character As ICharacter)

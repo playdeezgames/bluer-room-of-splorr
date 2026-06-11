@@ -21,4 +21,8 @@ Friend Module CharacterExtensions
     Friend Sub DescribeFeature(character As ICharacter, feature As IFeature)
         character.AddMessage(feature.GetDescription())
     End Sub
+    <Extension>
+    Friend Sub DescribeItem(character As ICharacter, item As IItem)
+        character.AddMessage(item.GetDescription())
+    End Sub
 End Module
