@@ -54,6 +54,10 @@ Friend Module ExamineCommandProcessor
         If feature IsNot Nothing Then
             Return ProcessExamineFeature(character, feature)
         End If
+        Dim item = character.Inventory.FindItemByNoun(noun)
+        If item IsNot Nothing Then
+            Return ProcessExamineItem(character, item, noun)
+        End If
         character.AddMessage($"{character.GetName()} sees no `{noun}` here.")
         Return CommandProcessorResult.Processed
     End Function
