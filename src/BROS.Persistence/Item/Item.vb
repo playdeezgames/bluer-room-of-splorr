@@ -16,10 +16,34 @@ Friend Class Item
             Return Persistence.Inventory.Create(World, _data, Data.InventoryId)
         End Get
         Set(value As IInventory)
-            If value.InventoryId <> Data.InventoryId Then
-                _data.Inventories(Data.InventoryId).ItemIds.Remove(ItemId)
+            RemoveFromInventoryAndEquipSlot()
+            If value IsNot Nothing Then
                 Data.InventoryId = value.InventoryId
-                _data.Inventories(Data.InventoryId).ItemIds.Add(ItemId)
+                _data.Inventories(Data.InventoryId.Value).ItemIds.Add(ItemId)
+            End If
+        End Set
+    End Property
+
+    Private Sub RemoveFromInventoryAndEquipSlot()
+        If Data.InventoryId.HasValue Then
+            _data.Inventories(Data.InventoryId.Value).ItemIds.Remove(ItemId)
+            Data.InventoryId = Nothing
+        End If
+        If Data.EquipSlotId.HasValue Then
+            _data.EquipSlots(Data.EquipSlotId.Value).ItemId = Nothing
+            Data.EquipSlotId = Nothing
+        End If
+    End Sub
+
+    Public Property EquipSlot As IEquipSlot Implements IItem.EquipSlot
+        Get
+            Return Persistence.EquipSlot.Create(World, _data, Data.EquipSlotId)
+        End Get
+        Set(value As IEquipSlot)
+            RemoveFromInventoryAndEquipSlot()
+            If value IsNot Nothing Then
+                Data.EquipSlotId = value.EquipSlotId
+                _data.EquipSlots(Data.EquipSlotId.Value).ItemId = ItemId
             End If
         End Set
     End Property

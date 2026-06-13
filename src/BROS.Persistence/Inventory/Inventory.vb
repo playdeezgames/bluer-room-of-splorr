@@ -29,18 +29,18 @@ Friend Class Inventory
         End Get
     End Property
 
-    Friend Shared Function Create(world As IWorld, data As WorldData, inventoryId As Guid) As IInventory
-        Return New Inventory(world, data, inventoryId)
+    Friend Shared Function Create(world As IWorld, data As WorldData, inventoryId As Guid?) As IInventory
+        If inventoryId Is Nothing Then
+            Return Nothing
+        End If
+        Return New Inventory(world, data, inventoryId.Value)
     End Function
 
     Public Function CreateItem(Optional initializer As Action(Of IItem) = Nothing) As IItem Implements IInventory.CreateItem
         Dim itemId As Guid = Guid.NewGuid
-        _data.Items(itemId) = New ItemData With
-            {
-                .InventoryId = InventoryId
-            }
-        Data.ItemIds.Add(itemId)
+        _data.Items(itemId) = New ItemData
         Dim result = Item.Create(world, _data, itemId)
+        result.Inventory = Me
         initializer?.Invoke(result)
         Return result
     End Function

@@ -24,6 +24,21 @@ Friend Module BluerRoomInitializer
     Private Sub InitializeN00b(character As ICharacter)
         character.SetName("Olen Kyrpa")
         character.SetTag(Tags.IS_AVATAR)
+        character.CreateEquipSlot(AddressOf InitializeButthole)
         character.World.Avatar = character
+    End Sub
+
+    Private Sub InitializeButthole(equipSlot As IEquipSlot)
+        equipSlot.SetName("butthole")
+        equipSlot.AddNouns(Nouns.BUTTHOLE)
+        equipSlot.AddPrepositions(Prepositions.IN)
+        equipSlot.SetDescription("It's a butthole. It looks kinda like this: *.")
+        equipSlot.CreateItem(AddressOf InitializeKey)
+    End Sub
+
+    Private Sub InitializeKey(item As IItem)
+        item.SetName("key")
+        item.AddNouns(Nouns.KEY)
+        item.SetDescription("This key smells like poop. I wonder why. Quit sniffing it, and maybe go wash yer hands.")
     End Sub
 End Module

@@ -26,4 +26,20 @@ Friend Class Character
     Friend Shared Function Create(world As IWorld, data As WorldData, characterId As Guid) As ICharacter
         Return New Character(world, data, characterId)
     End Function
+
+    Public Function CreateEquipSlot(initializer As Action(Of IEquipSlot)) As IEquipSlot Implements ICharacter.CreateEquipSlot
+        Dim equipSlotId = Guid.NewGuid
+        _data.EquipSlots(equipSlotId) = New EquipSlotData With
+            {
+                .CharacterId = CharacterId
+            }
+        Dim result = EquipSlot.Create(World, _data, equipSlotId)
+        initializer?.Invoke(result)
+        AddEquipSlot(result)
+        Return result
+    End Function
+
+    Private Sub AddEquipSlot(equipSlot As IEquipSlot)
+        Data.EquipSlotIds.Add(equipSlot.EquipSlotId)
+    End Sub
 End Class
