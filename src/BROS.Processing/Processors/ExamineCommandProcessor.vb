@@ -2,8 +2,6 @@
 
 Friend Module ExamineCommandProcessor
     Friend Function Process(world As IWorld, tokens As IEnumerable(Of String)) As CommandProcessorResult
-        'EXAMINE [NOUN] - noun is found immediately in the location we are examining in
-        'EXAMINE [NOUN1] [PREPOSITION] [NOUN2] - noun2 is part of the inventory of noun1, and preposition is associated with noun2
         If Not tokens.Any Then
             Return CommandProcessorResult.Invalid
         End If
@@ -66,7 +64,7 @@ Friend Module ExamineCommandProcessor
         character.DescribeFeature(feature)
         Dim items = feature.Inventory.Items
         If items.Any Then
-            character.AddMessage($"Items {feature.Inventory.DefaultPreposition.ToLower} {feature.GetName()} include {String.Join(", ", items.Select(Function(x) x.GetName()))}.")
+            character.AddMessage($"Items {feature.Inventory.DisplayPreposition} {feature.GetName()} include {String.Join(", ", items.Select(Function(x) x.GetName()))}.")
         End If
         Return CommandProcessorResult.Processed
     End Function

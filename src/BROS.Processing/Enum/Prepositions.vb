@@ -1,0 +1,4 @@
+﻿Friend Module Prepositions
+    Friend ReadOnly FROM As String = "FROM".ToUpper
+    Friend ReadOnly [ON] As String = "ON".ToUpper
+End Module

@@ -5,5 +5,5 @@
     ReadOnly Property Items As IEnumerable(Of IItem)
     Function HasPreposition(preposition As String) As Boolean
     Function FindItemByNoun(noun As String) As IItem
-    ReadOnly Property DefaultPreposition As String
+    ReadOnly Property DisplayPreposition As String
 End Interface

@@ -9,15 +9,15 @@ Friend Module BluerRoomInitializer
 
     Private Sub InitializeTable(feature As IFeature)
         feature.SetName("table")
-        feature.AddNouns("table")
+        feature.AddNouns(Nouns.TABLE)
         feature.SetDescription("It is an old table that only wobbles a little bit.")
         feature.Inventory.CreateItem(AddressOf InitializeNote)
-        feature.Inventory.AddPrepositions("on")
+        feature.Inventory.AddPrepositions(Prepositions.ON)
     End Sub
 
     Private Sub InitializeNote(item As IItem)
         item.SetName("Note from Yermom")
-        item.AddNouns("note")
+        item.AddNouns(Nouns.NOTE)
         item.SetDescription("The note reads: ""Hello! I woke up this morning to find that my tits were missing! I have gone to look them. - Yermom""")
     End Sub
 

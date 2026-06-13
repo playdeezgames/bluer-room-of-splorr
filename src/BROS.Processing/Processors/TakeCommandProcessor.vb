@@ -8,7 +8,7 @@ Friend Module TakeCommandProcessor
         Dim noun = tokens.First
         tokens = tokens.Skip(1)
         Dim preposition = tokens.First
-        If preposition <> Grimoire.FROM_PREPOSITION Then
+        If preposition <> Prepositions.FROM Then
             Return CommandProcessorResult.Invalid
         End If
         tokens = tokens.Skip(1)

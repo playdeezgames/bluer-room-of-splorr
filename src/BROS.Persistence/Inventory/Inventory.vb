@@ -23,9 +23,9 @@ Friend Class Inventory
         End Get
     End Property
 
-    Public ReadOnly Property DefaultPreposition As String Implements IInventory.DefaultPreposition
+    Public ReadOnly Property DisplayPreposition As String Implements IInventory.DisplayPreposition
         Get
-            Return Data.Prepositions.First
+            Return Data.Prepositions.First.ToLower
         End Get
     End Property
 
