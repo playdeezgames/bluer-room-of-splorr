@@ -1,10 +1,20 @@
 ﻿Imports BROS.Persistence
 
 Friend Module BluerRoomInitializer
-    Friend Sub Initialize(location As ILocation)
+    Private Sub LegacyInitialize(location As ILocation, frontYard As ILocation)
         location.SetName("The Bluer Room")
         location.CreateCharacter(AddressOf InitializeN00b)
         location.CreateFeature(AddressOf InitializeTable)
+        location.CreateRoute(Directions.OUT, frontYard, AddressOf InitializeExit)
+        frontYard.CreateRoute(Directions.IN, location, AddressOf InitializeEntrance)
+    End Sub
+
+    Private Sub InitializeEntrance(route As IRoute)
+        route.SetName("Entrance to the Bluer Room")
+    End Sub
+
+    Private Sub InitializeExit(route As IRoute)
+        route.SetName("Exit from the Bluer Room")
     End Sub
 
     Private Sub InitializeTable(feature As IFeature)
@@ -41,4 +51,10 @@ Friend Module BluerRoomInitializer
         item.AddNouns(Nouns.KEY)
         item.SetDescription("This key smells like poop. I wonder why. Quit sniffing it, and maybe go wash yer hands.")
     End Sub
+
+    Friend Function Initialize(frontYard As ILocation) As Action(Of ILocation)
+        Return Sub(location)
+                   LegacyInitialize(location, frontYard)
+               End Sub
+    End Function
 End Module

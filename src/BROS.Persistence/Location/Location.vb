@@ -68,4 +68,20 @@ Friend Class Location
     Public Function FindFeatureByNoun(noun As String) As IFeature Implements ILocation.FindFeatureByNoun
         Return Features.FirstOrDefault(Function(x) x.HasNoun(noun))
     End Function
+
+    Public Function CreateRoute(direction As String, destination As ILocation, Optional initializer As Action(Of IRoute) = Nothing) As IRoute Implements ILocation.CreateRoute
+        Dim routeId = Guid.NewGuid
+        _data.Routes(routeId) = New RouteData With
+            {
+                .DestinationLocationId = destination.LocationId
+            }
+        SetRoute(direction, routeId)
+        Dim result = Route.Create(World, _data, routeId)
+        initializer?.Invoke(result)
+        Return result
+    End Function
+
+    Private Sub SetRoute(direction As String, routeId As Guid)
+        Data.RouteIds(direction) = routeId
+    End Sub
 End Class

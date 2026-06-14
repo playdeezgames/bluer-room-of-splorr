@@ -10,4 +10,5 @@ Public Class WorldData
     Public Property Inventories As New Dictionary(Of Guid, InventoryData)
     Public Property Items As New Dictionary(Of Guid, ItemData)
     Public Property EquipSlots As New Dictionary(Of Guid, EquipSlotData)
+    Public Property Routes As New Dictionary(Of Guid, RouteData)
 End Class
