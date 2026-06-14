@@ -8,9 +8,11 @@ Friend Module Processors
             ("help", {"Shows context sensitive help.", "Examples:", "    HELP", "    HELP [COMMAND]"}, AddressOf HelpCommandProcessor.Process),
             ("look", {"Describes the immediate area.", "Example:", "    LOOK"}, AddressOf LookCommandProcessor.Process),
             ("examine", {"Looks at something closely.", "Example:", "    EXAMINE [NOUN]", "    EXAMINE [NOUN1] [PREPOSITION] [NOUN2]"}, AddressOf ExamineCommandProcessor.Process),
+            ("check", {"Alias for EXAMINE. For lore reasons. Bend over!"}, AddressOf ExamineCommandProcessor.Process),
             ("take", {"Transfers an item into yer inventory.", "Example:", "    TAKE [NOUN1] FROM [NOUN2]"}, AddressOf TakeCommandProcessor.Process),
             ("inventory", {"Shows the items in yer inventory.", "Example:", "    INVENTORY"}, AddressOf InventoryCommandProcessor.Process),
-            ("drop", {"Drops an item onto the floor.", "Example:", "    DROP [NOUN]"}, AddressOf DropCommandProcessor.Process)
+            ("drop", {"Drops an item onto the floor.", "Example:", "    DROP [NOUN]"}, AddressOf DropCommandProcessor.Process),
+            ("equipment", {"Shows equipment slots and the equipment thereof.", "Example:", "    EQUIPMENT"}, AddressOf EquipmentCommandProcessor.Process)
         }
     Private ReadOnly processorTable As IReadOnlyDictionary(Of String, Func(Of IWorld, IEnumerable(Of String), CommandProcessorResult)) =
         commandList.ToDictionary(Function(x) x.Command.ToUpper, Function(x) x.Processor)
