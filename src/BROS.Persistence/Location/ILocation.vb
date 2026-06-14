@@ -11,4 +11,5 @@
                         destination As ILocation,
                         Optional initializer As Action(Of IRoute) = Nothing) As IRoute
     ReadOnly Property Exits As IReadOnlyDictionary(Of String, IRoute)
+    Function FindRouteByDirection(direction As String) As IRoute
 End Interface

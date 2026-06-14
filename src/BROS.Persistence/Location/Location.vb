@@ -90,4 +90,12 @@ Friend Class Location
     Private Sub SetRoute(direction As String, routeId As Guid)
         Data.RouteIds(direction) = routeId
     End Sub
+
+    Public Function FindRouteByDirection(direction As String) As IRoute Implements ILocation.FindRouteByDirection
+        Dim routeId As Guid
+        If Data.RouteIds.TryGetValue(direction.ToUpper, routeId) Then
+            Return Route.Create(World, _data, routeId)
+        End If
+        Return Nothing
+    End Function
 End Class

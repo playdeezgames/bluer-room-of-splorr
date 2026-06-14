@@ -11,6 +11,12 @@ Friend Class Route
 
     Public ReadOnly Property RouteId As Guid Implements IRoute.RouteId
 
+    Public ReadOnly Property DestinationLocation As ILocation Implements IRoute.DestinationLocation
+        Get
+            Return Location.Create(World, _data, Data.DestinationLocationId)
+        End Get
+    End Property
+
     Protected Overrides ReadOnly Property Data As RouteData
         Get
             Return _data.Routes(RouteId)
