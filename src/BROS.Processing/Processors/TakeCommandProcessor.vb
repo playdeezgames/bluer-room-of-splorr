@@ -15,10 +15,29 @@ Friend Module TakeCommandProcessor
         Dim containerNoun = tokens.Single
         Dim character = world.Avatar
         Dim feature = character.Location.FindFeatureByNoun(containerNoun)
-        If feature Is Nothing Then
-            character.AddMessage($"{character.GetName} sees no {containerNoun} here.")
+        If feature IsNot Nothing Then
+            Return TakeFromFeature(noun, character, feature)
+        End If
+        Dim equipSlot = character.FindEquipSlotByNoun(containerNoun)
+        If equipSlot IsNot Nothing Then
+            Return TakeFromEquipSlot(noun, character, equipSlot)
+        End If
+        character.AddMessage($"{character.GetName} sees no {containerNoun} here.")
+        Return CommandProcessorResult.Processed
+    End Function
+
+    Private Function TakeFromEquipSlot(noun As String, character As ICharacter, equipSlot As IEquipSlot) As CommandProcessorResult
+        Dim item = equipSlot.Item
+        If item Is Nothing OrElse Not item.HasNoun(noun) Then
+            character.AddMessage($"{character.GetName} sees no {noun} here.")
             Return CommandProcessorResult.Processed
         End If
+        character.AddMessage($"{character.GetName} takes {item.GetName}.")
+        item.Inventory = character.Inventory
+        Return CommandProcessorResult.Processed
+    End Function
+
+    Private Function TakeFromFeature(noun As String, character As ICharacter, feature As IFeature) As CommandProcessorResult
         Dim item = feature.Inventory.FindItemByNoun(noun)
         If item Is Nothing Then
             character.AddMessage($"{character.GetName} sees no {noun} here.")
