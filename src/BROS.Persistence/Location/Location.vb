@@ -29,6 +29,12 @@ Friend Class Location
         End Get
     End Property
 
+    Public ReadOnly Property Exits As IReadOnlyDictionary(Of String, IRoute) Implements ILocation.Exits
+        Get
+            Return Data.RouteIds.ToDictionary(Function(x) x.Key, Function(x) Route.Create(World, _data, x.Value))
+        End Get
+    End Property
+
     Public Function CreateCharacter(Optional initializer As Action(Of ICharacter) = Nothing) As ICharacter Implements ILocation.CreateCharacter
         Dim characterId = Guid.NewGuid
         _data.Characters(characterId) = New CharacterData With
