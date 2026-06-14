@@ -20,6 +20,15 @@ Friend Class EquipSlot
         End Get
     End Property
 
+    Public ReadOnly Property Item As IItem Implements IEquipSlot.Item
+        Get
+            Return If(
+                Data.ItemId.HasValue,
+                Persistence.Item.Create(World, _data, Data.ItemId.Value),
+                Nothing)
+        End Get
+    End Property
+
     Protected Overrides ReadOnly Property Data As EquipSlotData
         Get
             Return _data.EquipSlots(EquipSlotId)
@@ -42,7 +51,7 @@ Friend Class EquipSlot
     Public Function CreateItem(initializer As Action(Of IItem)) As IItem Implements IEquipSlot.CreateItem
         Dim itemId As Guid = Guid.NewGuid
         _data.Items(itemId) = New ItemData
-        Dim result = Item.Create(World, _data, itemId)
+        Dim result = Persistence.Item.Create(World, _data, itemId)
         result.EquipSlot = Me
         initializer?.Invoke(result)
         Return result

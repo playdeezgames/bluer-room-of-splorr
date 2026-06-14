@@ -23,6 +23,12 @@ Friend Class Character
         End Get
     End Property
 
+    Public ReadOnly Property EquipSlots As IEnumerable(Of IEquipSlot) Implements ICharacter.EquipSlots
+        Get
+            Return Data.EquipSlotIds.Select(Function(x) EquipSlot.Create(World, _data, x))
+        End Get
+    End Property
+
     Friend Shared Function Create(world As IWorld, data As WorldData, characterId As Guid) As ICharacter
         Return New Character(world, data, characterId)
     End Function
@@ -42,4 +48,8 @@ Friend Class Character
     Private Sub AddEquipSlot(equipSlot As IEquipSlot)
         Data.EquipSlotIds.Add(equipSlot.EquipSlotId)
     End Sub
+
+    Public Function FindEquipSlotByNoun(noun As String) As IEquipSlot Implements ICharacter.FindEquipSlotByNoun
+        Return EquipSlots.FirstOrDefault(Function(x) x.HasNoun(noun))
+    End Function
 End Class

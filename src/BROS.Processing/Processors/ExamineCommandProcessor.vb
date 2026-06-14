@@ -7,15 +7,17 @@ Friend Module ExamineCommandProcessor
         End If
         Dim noun = tokens.First
         tokens = tokens.Skip(1)
-        If Not tokens.Any Then
-            Return ProcessExamineLocation(world.Avatar, noun)
-        ElseIf tokens.Count <> 2 Then
-            Return CommandProcessorResult.Invalid
-        End If
-        Dim preposition = tokens.First
-        tokens = tokens.Skip(1)
-        Dim containerNoun = tokens.Single
-        Return ProcessExamineContainer(world.Avatar, containerNoun, preposition, noun)
+        Select Case tokens.Count
+            Case 0
+                Return ProcessExamineDirect(world.Avatar, noun)
+            Case 2
+                Dim preposition = tokens.First
+                tokens = tokens.Skip(1)
+                Dim containerNoun = tokens.Single
+                Return ProcessExamineContainer(world.Avatar, containerNoun, preposition, noun)
+            Case Else
+                Return CommandProcessorResult.Invalid
+        End Select
     End Function
 
     Private Function ProcessExamineContainer(
@@ -46,7 +48,7 @@ Friend Module ExamineCommandProcessor
         Return CommandProcessorResult.Processed
     End Function
 
-    Private Function ProcessExamineLocation(character As ICharacter, noun As String) As CommandProcessorResult
+    Private Function ProcessExamineDirect(character As ICharacter, noun As String) As CommandProcessorResult
         character.World.ClearMessages()
         Dim feature = character.Location.FindFeatureByNoun(noun)
         If feature IsNot Nothing Then
@@ -56,7 +58,20 @@ Friend Module ExamineCommandProcessor
         If item IsNot Nothing Then
             Return ProcessExamineItem(character, item, noun)
         End If
+        Dim equipSlot = character.FindEquipSlotByNoun(noun)
+        If equipSlot IsNot Nothing Then
+            Return ProcessExamineEquipSlot(character, equipSlot)
+        End If
         character.AddMessage($"{character.GetName()} sees no `{noun}` here.")
+        Return CommandProcessorResult.Processed
+    End Function
+
+    Private Function ProcessExamineEquipSlot(character As ICharacter, equipSlot As IEquipSlot) As CommandProcessorResult
+        character.DescribeEquipSlot(equipSlot)
+        Dim item = equipSlot.Item
+        If item IsNot Nothing Then
+            character.AddMessage($"{character.GetName}'s {equipSlot.GetName()} has {item.GetName()} {equipSlot.DisplayPreposition} it.")
+        End If
         Return CommandProcessorResult.Processed
     End Function
 

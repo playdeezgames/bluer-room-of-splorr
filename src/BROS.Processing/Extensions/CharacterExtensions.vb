@@ -25,4 +25,8 @@ Friend Module CharacterExtensions
     Friend Sub DescribeItem(character As ICharacter, item As IItem)
         character.AddMessage(item.GetDescription())
     End Sub
+    <Extension>
+    Friend Sub DescribeEquipSlot(character As ICharacter, equipSlot As IEquipSlot)
+        character.AddMessage(equipSlot.GetDescription())
+    End Sub
 End Module
