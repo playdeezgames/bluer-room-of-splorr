@@ -9,7 +9,7 @@ Friend Module Processors
             ("look", {"Describes the immediate area.", "Example:", "    LOOK"}, AddressOf LookCommandProcessor.Process),
             ("examine", {"Looks at something closely.", "Example:", "    EXAMINE [ITEM/FEATURE/DIRECTION]", "    EXAMINE [ITEM] [PREPOSITION] [FEATURE]"}, AddressOf ExamineCommandProcessor.Process),
             ("check", {"Alias for EXAMINE. For lore reasons. Bend over!"}, AddressOf ExamineCommandProcessor.Process),
-            ("take", {"Transfers an item into yer inventory.", "Example:", "    TAKE [ITEM] FROM [FEATURE]"}, AddressOf TakeCommandProcessor.Process),
+            ("take", {"Transfers an item into yer inventory.", "Example:", "    TAKE [ITEM] FROM [FEATURE/EQUIP-SLOT]"}, AddressOf TakeCommandProcessor.Process),
             ("inventory", {"Shows the items in yer inventory.", "Example:", "    INVENTORY"}, AddressOf InventoryCommandProcessor.Process),
             ("drop", {"Drops an item onto the floor.", "Example:", "    DROP [ITEM]"}, AddressOf DropCommandProcessor.Process),
             ("equipment", {"Shows equipment slots and the equipment thereof.", "Example:", "    EQUIPMENT"}, AddressOf EquipmentCommandProcessor.Process),
