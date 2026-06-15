@@ -56,7 +56,7 @@ Friend Module BluerRoomInitializer
 
     Private Sub InitializeKey(item As IItem)
         item.SetName("Ass-Key")
-        item.AddNouns(Nouns.ASSKEY)
+        item.AddNouns(Nouns.ASSKEY, Nouns.KEY)
         item.SetDescription("This key smells like poop. I wonder why. Quit sniffing it, and maybe go wash yer hands.")
     End Sub
 
