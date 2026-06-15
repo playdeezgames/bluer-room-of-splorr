@@ -18,7 +18,7 @@ Friend Module GoCommandProcessor
     End Function
 
     Private Function ProcessRoute(character As ICharacter, direction As String, route As IRoute) As CommandProcessorResult
-        Dim keyItem = route.KeyItem
+        Dim keyItem = route.Lock?.Key
         If keyItem IsNot Nothing Then
             character.AddMessage($"{character.GetName} cannot go {direction.ToLower} through {route.GetName}, because it is locked by {keyItem.GetName}.")
             Return CommandProcessorResult.Processed

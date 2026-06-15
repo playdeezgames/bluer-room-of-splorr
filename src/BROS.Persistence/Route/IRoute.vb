@@ -2,5 +2,6 @@
     Inherits IBROSEntity
     ReadOnly Property RouteId As Guid
     ReadOnly Property DestinationLocation As ILocation
-    Property KeyItem As IItem
+    Function CreateLock(item As IItem, Optional initializer As Action(Of ILock) = Nothing) As ILock
+    ReadOnly Property Lock As ILock
 End Interface

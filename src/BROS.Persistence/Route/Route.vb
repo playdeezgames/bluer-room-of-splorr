@@ -17,13 +17,10 @@ Friend Class Route
         End Get
     End Property
 
-    Public Property KeyItem As IItem Implements IRoute.KeyItem
+    Public ReadOnly Property Lock As ILock Implements IRoute.Lock
         Get
-            Return Item.Create(World, _data, Data.KeyItemId)
+            Return Persistence.Lock.Create(World, _data, Data.LockId)
         End Get
-        Set(value As IItem)
-            Data.KeyItemId = value?.ItemId
-        End Set
     End Property
 
     Protected Overrides ReadOnly Property Data As RouteData
@@ -37,5 +34,17 @@ Friend Class Route
             Return Nothing
         End If
         Return New Route(world, data, routeId.Value)
+    End Function
+
+    Public Function CreateLock(item As IItem, Optional initializer As Action(Of ILock) = Nothing) As ILock Implements IRoute.CreateLock
+        Dim lockId = Guid.NewGuid
+        _data.Locks(lockId) = New LockData With
+            {
+                .KeyItemId = item.ItemId
+            }
+        Data.LockId = lockId
+        Dim result = Persistence.Lock.Create(World, _data, lockId)
+        initializer?.Invoke(result)
+        Return result
     End Function
 End Class

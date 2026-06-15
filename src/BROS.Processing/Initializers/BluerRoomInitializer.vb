@@ -7,15 +7,22 @@ Friend Module BluerRoomInitializer
         location.CreateFeature(AddressOf InitializeTable)
         Dim exitRoute = location.CreateRoute(Directions.OUT, frontYard, AddressOf InitializeExit)
         frontYard.CreateRoute(Directions.IN, location, AddressOf InitializeEntrance)
-        exitRoute.KeyItem = character.FindEquipSlotByNoun(Nouns.BUTTHOLE).Item
+        exitRoute.CreateLock(character.FindEquipSlotByNoun(Nouns.BUTTHOLE).Item, AddressOf InitializeExitLock)
+    End Sub
+
+    Private Sub InitializeExitLock(lock As ILock)
+        lock.SetName("Mister Lock")
+        lock.SetDescription("This is a standard Mister Lock. Legally distinct.")
     End Sub
 
     Private Sub InitializeEntrance(route As IRoute)
         route.SetName("Entrance to the Bluer Room")
+        route.SetDescription("Through this, you can enter the Bluer Room!")
     End Sub
 
     Private Sub InitializeExit(route As IRoute)
         route.SetName("Exit from the Bluer Room")
+        route.SetDescription("Through this, you can exit the Bluer Room!")
     End Sub
 
     Private Sub InitializeTable(feature As IFeature)
