@@ -3,10 +3,11 @@
 Friend Module BluerRoomInitializer
     Private Sub LegacyInitialize(location As ILocation, frontYard As ILocation)
         location.SetName("The Bluer Room")
-        location.CreateCharacter(AddressOf InitializeN00b)
+        Dim character = location.CreateCharacter(AddressOf InitializeN00b)
         location.CreateFeature(AddressOf InitializeTable)
-        location.CreateRoute(Directions.OUT, frontYard, AddressOf InitializeExit)
+        Dim exitRoute = location.CreateRoute(Directions.OUT, frontYard, AddressOf InitializeExit)
         frontYard.CreateRoute(Directions.IN, location, AddressOf InitializeEntrance)
+        exitRoute.KeyItem = character.FindEquipSlotByNoun(Nouns.BUTTHOLE).Item
     End Sub
 
     Private Sub InitializeEntrance(route As IRoute)
@@ -47,8 +48,8 @@ Friend Module BluerRoomInitializer
     End Sub
 
     Private Sub InitializeKey(item As IItem)
-        item.SetName("key")
-        item.AddNouns(Nouns.KEY)
+        item.SetName("Ass-Key")
+        item.AddNouns(Nouns.ASSKEY)
         item.SetDescription("This key smells like poop. I wonder why. Quit sniffing it, and maybe go wash yer hands.")
     End Sub
 

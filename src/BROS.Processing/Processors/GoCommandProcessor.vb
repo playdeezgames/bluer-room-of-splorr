@@ -18,7 +18,11 @@ Friend Module GoCommandProcessor
     End Function
 
     Private Function ProcessRoute(character As ICharacter, direction As String, route As IRoute) As CommandProcessorResult
-        'TODO: whatever custom checks for going through a route like locks and whatnot
+        Dim keyItem = route.KeyItem
+        If keyItem IsNot Nothing Then
+            character.AddMessage($"{character.GetName} cannot go {direction.ToLower} through {route.GetName}, because it is locked by {keyItem.GetName}.")
+            Return CommandProcessorResult.Processed
+        End If
         character.AddMessage($"{character.GetName} goes {direction.ToLower} through {route.GetName}.")
         character.Location = route.DestinationLocation
         character.DescribeLocation()

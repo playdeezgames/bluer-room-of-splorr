@@ -54,7 +54,13 @@ Friend Class Item
         End Get
     End Property
 
-    Friend Shared Function Create(world As IWorld, data As WorldData, itemId As Guid) As IItem
-        Return New Item(world, data, itemId)
+    Friend Shared Function Create(
+                                 world As IWorld,
+                                 data As WorldData,
+                                 itemId As Guid?) As IItem
+        Return If(
+            itemId.HasValue,
+            New Item(world, data, itemId.Value),
+            Nothing)
     End Function
 End Class

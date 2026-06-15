@@ -17,6 +17,15 @@ Friend Class Route
         End Get
     End Property
 
+    Public Property KeyItem As IItem Implements IRoute.KeyItem
+        Get
+            Return Item.Create(World, _data, Data.KeyItemId)
+        End Get
+        Set(value As IItem)
+            Data.KeyItemId = value?.ItemId
+        End Set
+    End Property
+
     Protected Overrides ReadOnly Property Data As RouteData
         Get
             Return _data.Routes(RouteId)
