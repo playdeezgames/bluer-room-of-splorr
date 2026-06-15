@@ -8,7 +8,7 @@ Friend Module TakeCommandProcessor
         Dim noun = tokens.First
         tokens = tokens.Skip(1)
         Dim preposition = tokens.First
-        If preposition <> Prepositions.FROM Then
+        If Not preposition.Equals(Prepositions.FROM, StringComparison.InvariantCultureIgnoreCase) Then
             Return CommandProcessorResult.Invalid
         End If
         tokens = tokens.Skip(1)

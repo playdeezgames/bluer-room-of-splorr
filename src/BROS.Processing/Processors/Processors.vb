@@ -7,13 +7,14 @@ Friend Module Processors
             ("menu", {"Brings up the main menu.", "Example:", "    MENU"}, AddressOf MenuCommandProcessor.Process),
             ("help", {"Shows context sensitive help.", "Examples:", "    HELP", "    HELP [COMMAND]"}, AddressOf HelpCommandProcessor.Process),
             ("look", {"Describes the immediate area.", "Example:", "    LOOK"}, AddressOf LookCommandProcessor.Process),
-            ("examine", {"Looks at something closely.", "Example:", "    EXAMINE [NOUN]", "    EXAMINE [NOUN1] [PREPOSITION] [NOUN2]"}, AddressOf ExamineCommandProcessor.Process),
+            ("examine", {"Looks at something closely.", "Example:", "    EXAMINE [ITEM/FEATURE/DIRECTION]", "    EXAMINE [ITEM] [PREPOSITION] [FEATURE]"}, AddressOf ExamineCommandProcessor.Process),
             ("check", {"Alias for EXAMINE. For lore reasons. Bend over!"}, AddressOf ExamineCommandProcessor.Process),
-            ("take", {"Transfers an item into yer inventory.", "Example:", "    TAKE [NOUN1] FROM [NOUN2]"}, AddressOf TakeCommandProcessor.Process),
+            ("take", {"Transfers an item into yer inventory.", "Example:", "    TAKE [ITEM] FROM [FEATURE]"}, AddressOf TakeCommandProcessor.Process),
             ("inventory", {"Shows the items in yer inventory.", "Example:", "    INVENTORY"}, AddressOf InventoryCommandProcessor.Process),
-            ("drop", {"Drops an item onto the floor.", "Example:", "    DROP [NOUN]"}, AddressOf DropCommandProcessor.Process),
+            ("drop", {"Drops an item onto the floor.", "Example:", "    DROP [ITEM]"}, AddressOf DropCommandProcessor.Process),
             ("equipment", {"Shows equipment slots and the equipment thereof.", "Example:", "    EQUIPMENT"}, AddressOf EquipmentCommandProcessor.Process),
-            ("go", {"Attempts to move in a particular direction.", "Example:", "    GO [DIRECTION]"}, AddressOf GoCommandProcessor.Process)
+            ("go", {"Attempts to move in a particular direction.", "Example:", "    GO [DIRECTION]"}, AddressOf GoCommandProcessor.Process),
+            ("unlock", {"Attempts to unlock a route in a particular direction with a particular item.", "Example:", "    UNLOCK [DIRECTION] WITH [ITEM]"}, AddressOf UnlockCommandProcessor.Process)
         }
     Private ReadOnly processorTable As IReadOnlyDictionary(Of String, Func(Of IWorld, IEnumerable(Of String), CommandProcessorResult)) =
         commandList.ToDictionary(Function(x) x.Command.ToUpper, Function(x) x.Processor)

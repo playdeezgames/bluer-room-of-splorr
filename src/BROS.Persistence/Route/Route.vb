@@ -29,6 +29,14 @@ Friend Class Route
         End Get
     End Property
 
+    Public Sub DestroyLock() Implements IRoute.DestroyLock
+        Dim lockId = Data.LockId
+        Data.LockId = Nothing
+        If lockId.HasValue Then
+            _data.Locks.Remove(lockId.Value)
+        End If
+    End Sub
+
     Friend Shared Function Create(world As IWorld, data As WorldData, routeId As Guid?) As IRoute
         If Not routeId.HasValue Then
             Return Nothing
