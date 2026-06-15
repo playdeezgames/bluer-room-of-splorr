@@ -62,7 +62,16 @@ Friend Module ExamineCommandProcessor
         If equipSlot IsNot Nothing Then
             Return ProcessExamineEquipSlot(character, equipSlot)
         End If
+        Dim route = character.Location.FindRouteByDirection(noun)
+        If route IsNot Nothing Then
+            Return ProcessExamineRoute(character, route)
+        End If
         character.AddMessage($"{character.GetName()} sees no `{noun}` here.")
+        Return CommandProcessorResult.Processed
+    End Function
+
+    Private Function ProcessExamineRoute(character As ICharacter, route As IRoute) As CommandProcessorResult
+        character.DescribeRoute(route)
         Return CommandProcessorResult.Processed
     End Function
 

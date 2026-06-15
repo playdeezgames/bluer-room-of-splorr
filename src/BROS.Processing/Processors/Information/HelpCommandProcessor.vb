@@ -25,6 +25,8 @@ Friend Module HelpCommandProcessor
         world.ClearMessages()
         world.AddMessage("Available Commands:")
         world.AddMessage(String.Join(", ", Processors.AllCommands))
+        world.AddMessage("For help with a specific command, try:")
+        world.AddMessage("    HELP [COMMAND]")
         Return CommandProcessorResult.Processed
     End Function
 End Module

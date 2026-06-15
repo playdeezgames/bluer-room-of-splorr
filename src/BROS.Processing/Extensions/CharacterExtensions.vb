@@ -37,4 +37,13 @@ Friend Module CharacterExtensions
     Friend Sub DescribeEquipSlot(character As ICharacter, equipSlot As IEquipSlot)
         character.AddMessage(equipSlot.GetDescription())
     End Sub
+    <Extension>
+    Friend Sub DescribeRoute(character As ICharacter, route As IRoute)
+        character.AddMessage(route.GetDescription())
+        Dim lock = route.Lock
+        If lock IsNot Nothing Then
+            character.AddMessage($"It is locked with: {lock.GetName}.")
+            character.AddMessage(lock.GetDescription())
+        End If
+    End Sub
 End Module
