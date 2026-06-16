@@ -18,5 +18,6 @@ Friend Module FrontYardInitializer
         item.SetName("Swallow")
         item.AddNouns(Nouns.BIRD, Nouns.SWALLOW)
         item.SetDescription("This is a swallow. The bird of true love.")
+        item.SetTag(Tags.LUREABLE)
     End Sub
 End Module

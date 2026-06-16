@@ -28,8 +28,16 @@ Friend Module TakeCommandProcessor
 
     Private Function TakeFromEquipSlot(noun As String, character As ICharacter, equipSlot As IEquipSlot) As CommandProcessorResult
         Dim item = equipSlot.Item
+        Return TakeItem(noun, character, item)
+    End Function
+
+    Private Function TakeItem(noun As String, character As ICharacter, ByRef item As IItem) As CommandProcessorResult
         If item Is Nothing OrElse Not item.HasNoun(noun) Then
             character.AddMessage($"{character.GetName} sees no {noun} here.")
+            Return CommandProcessorResult.Processed
+        End If
+        If Not item.IsTakeable() Then
+            character.AddMessage($"{character.GetName} cannot take {item.GetName()}.")
             Return CommandProcessorResult.Processed
         End If
         character.AddMessage($"{character.GetName} takes {item.GetName}.")
@@ -39,12 +47,6 @@ Friend Module TakeCommandProcessor
 
     Private Function TakeFromFeature(noun As String, character As ICharacter, feature As IFeature) As CommandProcessorResult
         Dim item = feature.Inventory.FindItemByNoun(noun)
-        If item Is Nothing Then
-            character.AddMessage($"{character.GetName} sees no {noun} here.")
-            Return CommandProcessorResult.Processed
-        End If
-        character.AddMessage($"{character.GetName} takes {item.GetName}.")
-        item.Inventory = character.Inventory
-        Return CommandProcessorResult.Processed
+        Return TakeItem(noun, character, item)
     End Function
 End Module
