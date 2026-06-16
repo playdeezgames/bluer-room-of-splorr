@@ -1,7 +1,7 @@
 ﻿Friend Module Directions
-    Friend ReadOnly [IN] As String = "IN".ToUpper
-    Friend ReadOnly OUT As String = "OUT".ToUpper
-    Friend ReadOnly NORTH As String = "NORTH".ToUpper
-    Friend ReadOnly SOUTH As String = "SOUTH".ToUpper
-    Friend ReadOnly PORTAL As String = "PORTAL".ToUpper
+    Friend ReadOnly [IN] As String = "in"
+    Friend ReadOnly OUT As String = "out"
+    Friend ReadOnly NORTH As String = "north"
+    Friend ReadOnly SOUTH As String = "south"
+    Friend ReadOnly PORTAL As String = "portal"
 End Module

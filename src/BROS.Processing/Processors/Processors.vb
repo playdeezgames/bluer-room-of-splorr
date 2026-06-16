@@ -18,9 +18,15 @@ Friend Module Processors
             ("talk", {"Attempts communication with another character.", "Example:", "    TALK TO [CHARACTER]"}, AddressOf TalkCommandProcessor.Process)
         }
     Private ReadOnly processorTable As IReadOnlyDictionary(Of String, Func(Of IWorld, Queue(Of String), CommandProcessorResult)) =
-        commandList.ToDictionary(Function(x) x.Command.ToUpper, Function(x) x.Processor)
+        commandList.ToDictionary(
+            Function(x) x.Command,
+            Function(x) x.Processor,
+            StringComparer.InvariantCultureIgnoreCase)
     Private ReadOnly processorHelp As Dictionary(Of String, IEnumerable(Of String)) =
-        commandList.ToDictionary(Function(x) x.Command.ToUpper, Function(x) x.HelpTexts)
+        commandList.ToDictionary(
+            Function(x) x.Command,
+            Function(x) x.HelpTexts,
+            StringComparer.InvariantCultureIgnoreCase)
     Friend ReadOnly Property AllCommands As IEnumerable(Of String)
         Get
             Return processorTable.Keys.Order()
@@ -28,14 +34,14 @@ Friend Module Processors
     End Property
     Friend Function GetProcessor(command As String) As Func(Of IWorld, Queue(Of String), CommandProcessorResult)
         Dim result As Func(Of IWorld, Queue(Of String), CommandProcessorResult) = Nothing
-        If processorTable.TryGetValue(command.ToUpper, result) Then
+        If processorTable.TryGetValue(command, result) Then
             Return result
         End If
         Return Function(x, y) CommandProcessorResult.Invalid
     End Function
     Friend Function GetHelpTexts(command As String) As IEnumerable(Of String)
         Dim result As IEnumerable(Of String) = Nothing
-        If processorHelp.TryGetValue(command.ToUpper, result) Then
+        If processorHelp.TryGetValue(command, result) Then
             Return result
         End If
         Return {$"There ain't no `{command}` command, fool!"}

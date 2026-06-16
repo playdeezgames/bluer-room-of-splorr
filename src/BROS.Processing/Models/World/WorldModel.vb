@@ -47,7 +47,7 @@ Public Class WorldModel
     End Sub
 
     Public Sub ProcessCommand(command As String) Implements IWorldModel.ProcessCommand
-        Dim tokens = New Queue(Of String)(command.ToUpper.Split(" "c))
+        Dim tokens = New Queue(Of String)(command.Split(" "c))
         Select Case CommandProcessor.Process(Entity, tokens)
             Case CommandProcessorResult.Invalid
                 Entity.AddMessage($"Invalid Command: `{command}`!", mood:=Moods.ERROR)

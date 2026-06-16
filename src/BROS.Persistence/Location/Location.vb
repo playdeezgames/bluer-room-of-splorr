@@ -93,7 +93,7 @@ Friend Class Location
 
     Public Function FindRouteByDirection(direction As String) As IRoute Implements ILocation.FindRouteByDirection
         Dim routeId As Guid
-        If Data.RouteIds.TryGetValue(direction.ToUpper, routeId) Then
+        If Data.RouteIds.TryGetValue(direction, routeId) Then
             Return Route.Create(World, _data, routeId)
         End If
         Return Nothing
