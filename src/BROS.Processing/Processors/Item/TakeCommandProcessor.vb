@@ -1,17 +1,15 @@
 ﻿Imports BROS.Persistence
 
 Friend Module TakeCommandProcessor
-    Friend Function Process(world As IWorld, tokens As IEnumerable(Of String)) As CommandProcessorResult
+    Friend Function Process(world As IWorld, tokens As Queue(Of String)) As CommandProcessorResult
         If tokens.Count <> 3 Then
             Return CommandProcessorResult.Invalid
         End If
-        Dim noun = tokens.First
-        tokens = tokens.Skip(1)
-        Dim preposition = tokens.First
+        Dim noun = tokens.Dequeue
+        Dim preposition = tokens.Dequeue
         If Not preposition.Equals(Prepositions.FROM, StringComparison.InvariantCultureIgnoreCase) Then
             Return CommandProcessorResult.Invalid
         End If
-        tokens = tokens.Skip(1)
         Dim containerNoun = tokens.Single
         Dim character = world.Avatar
         Dim feature = character.Location.FindFeatureByNoun(containerNoun)

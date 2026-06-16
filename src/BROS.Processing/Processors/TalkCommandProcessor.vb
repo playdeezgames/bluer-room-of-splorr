@@ -1,12 +1,11 @@
 ﻿Imports BROS.Persistence
 
 Friend Module TalkCommandProcessor
-    Friend Function Process(world As IWorld, tokens As IEnumerable(Of String)) As CommandProcessorResult
+    Friend Function Process(world As IWorld, tokens As Queue(Of String)) As CommandProcessorResult
         If tokens.Count <> 2 Then
             Return CommandProcessorResult.Invalid
         End If
-        Dim preposition = tokens.First
-        tokens = tokens.Skip(1)
+        Dim preposition = tokens.Dequeue
         If Not preposition.Equals(Prepositions.TO, StringComparison.InvariantCultureIgnoreCase) Then
             Return CommandProcessorResult.Invalid
         End If

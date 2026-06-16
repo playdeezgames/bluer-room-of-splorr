@@ -1,7 +1,7 @@
 ﻿Imports BROS.Persistence
 
 Friend Module DropCommandProcessor
-    Friend Function Process(world As IWorld, tokens As IEnumerable(Of String)) As CommandProcessorResult
+    Friend Function Process(world As IWorld, tokens As Queue(Of String)) As CommandProcessorResult
         If tokens.Count <> 1 Then
             Return CommandProcessorResult.Invalid
         End If

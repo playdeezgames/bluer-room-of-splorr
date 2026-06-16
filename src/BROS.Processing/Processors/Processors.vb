@@ -1,8 +1,8 @@
 ﻿Imports BROS.Persistence
 
 Friend Module Processors
-    Private ReadOnly commandList As IReadOnlyList(Of (Command As String, HelpTexts As IEnumerable(Of String), Processor As Func(Of IWorld, IEnumerable(Of String), CommandProcessorResult))) =
-        New List(Of (String, IEnumerable(Of String), Func(Of IWorld, IEnumerable(Of String), CommandProcessorResult))) From
+    Private ReadOnly commandList As IReadOnlyList(Of (Command As String, HelpTexts As IEnumerable(Of String), Processor As Func(Of IWorld, Queue(Of String), CommandProcessorResult))) =
+        New List(Of (String, IEnumerable(Of String), Func(Of IWorld, Queue(Of String), CommandProcessorResult))) From
         {
             ("menu", {"Brings up the main menu.", "Example:", "    MENU"}, AddressOf MenuCommandProcessor.Process),
             ("help", {"Shows context sensitive help.", "Examples:", "    HELP", "    HELP [COMMAND]"}, AddressOf HelpCommandProcessor.Process),
@@ -17,7 +17,7 @@ Friend Module Processors
             ("unlock", {"Attempts to unlock a route in a particular direction with a particular item.", "Example:", "    UNLOCK [DIRECTION] WITH [ITEM]"}, AddressOf UnlockCommandProcessor.Process),
             ("talk", {"Attempts communication with another character.", "Example:", "    TALK TO [CHARACTER]"}, AddressOf TalkCommandProcessor.Process)
         }
-    Private ReadOnly processorTable As IReadOnlyDictionary(Of String, Func(Of IWorld, IEnumerable(Of String), CommandProcessorResult)) =
+    Private ReadOnly processorTable As IReadOnlyDictionary(Of String, Func(Of IWorld, Queue(Of String), CommandProcessorResult)) =
         commandList.ToDictionary(Function(x) x.Command.ToUpper, Function(x) x.Processor)
     Private ReadOnly processorHelp As Dictionary(Of String, IEnumerable(Of String)) =
         commandList.ToDictionary(Function(x) x.Command.ToUpper, Function(x) x.HelpTexts)
@@ -26,8 +26,8 @@ Friend Module Processors
             Return processorTable.Keys.Order()
         End Get
     End Property
-    Friend Function GetProcessor(command As String) As Func(Of IWorld, IEnumerable(Of String), CommandProcessorResult)
-        Dim result As Func(Of IWorld, IEnumerable(Of String), CommandProcessorResult) = Nothing
+    Friend Function GetProcessor(command As String) As Func(Of IWorld, Queue(Of String), CommandProcessorResult)
+        Dim result As Func(Of IWorld, Queue(Of String), CommandProcessorResult) = Nothing
         If processorTable.TryGetValue(command.ToUpper, result) Then
             Return result
         End If

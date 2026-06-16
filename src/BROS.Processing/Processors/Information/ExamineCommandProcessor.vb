@@ -1,18 +1,16 @@
 ﻿Imports BROS.Persistence
 
 Friend Module ExamineCommandProcessor
-    Friend Function Process(world As IWorld, tokens As IEnumerable(Of String)) As CommandProcessorResult
-        If Not tokens.Any Then
+    Friend Function Process(world As IWorld, tokens As Queue(Of String)) As CommandProcessorResult
+        If tokens.Count = 0 Then
             Return CommandProcessorResult.Invalid
         End If
-        Dim noun = tokens.First
-        tokens = tokens.Skip(1)
+        Dim noun = tokens.Dequeue
         Select Case tokens.Count
             Case 0
                 Return ProcessExamineDirect(world.Avatar, noun)
             Case 2
-                Dim preposition = tokens.First
-                tokens = tokens.Skip(1)
+                Dim preposition = tokens.Dequeue
                 Dim containerNoun = tokens.Single
                 Return ProcessExamineContainer(world.Avatar, containerNoun, preposition, noun)
             Case Else

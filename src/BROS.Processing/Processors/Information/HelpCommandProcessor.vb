@@ -1,7 +1,7 @@
 ﻿Imports BROS.Persistence
 
 Friend Module HelpCommandProcessor
-    Friend Function Process(world As IWorld, tokens As IEnumerable(Of String)) As CommandProcessorResult
+    Friend Function Process(world As IWorld, tokens As Queue(Of String)) As CommandProcessorResult
         Select Case tokens.Count
             Case 0
                 Return ShowCommands(world)

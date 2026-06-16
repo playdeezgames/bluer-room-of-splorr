@@ -1,23 +1,21 @@
 ﻿Imports BROS.Persistence
 
 Friend Module UnlockCommandProcessor
-    Friend Function Process(world As IWorld, tokens As IEnumerable(Of String)) As CommandProcessorResult
+    Friend Function Process(world As IWorld, tokens As Queue(Of String)) As CommandProcessorResult
         If tokens.Count <> 3 Then
             Return CommandProcessorResult.Invalid
         End If
-        Dim direction = tokens.First
-        tokens = tokens.Skip(1)
+        Dim direction = tokens.Dequeue
         Dim character = world.Avatar
         Dim route As IRoute = character.Location.FindRouteByDirection(direction)
         If route Is Nothing Then
             character.AddMessage($"{character.GetName()} sees nothing going {direction}.")
             Return CommandProcessorResult.Processed
         End If
-        Dim preposition = tokens.First
+        Dim preposition = tokens.Dequeue
         If Not preposition.Equals(Prepositions.WITH, StringComparison.InvariantCultureIgnoreCase) Then
             Return CommandProcessorResult.Invalid
         End If
-        tokens = tokens.Skip(1)
         Dim noun = tokens.Single
         Dim item = character.Inventory.FindItemByNoun(noun)
         If item Is Nothing Then

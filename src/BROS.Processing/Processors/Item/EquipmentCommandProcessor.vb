@@ -1,8 +1,8 @@
 ﻿Imports BROS.Persistence
 
 Friend Module EquipmentCommandProcessor
-    Friend Function Process(world As IWorld, tokens As IEnumerable(Of String)) As CommandProcessorResult
-        If tokens.Any Then
+    Friend Function Process(world As IWorld, tokens As Queue(Of String)) As CommandProcessorResult
+        If tokens.Count <> 0 Then
             Return CommandProcessorResult.Invalid
         End If
         Dim character = world.Avatar
