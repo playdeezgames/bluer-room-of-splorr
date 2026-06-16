@@ -47,12 +47,12 @@ Friend Class Inventory
 
     Public Sub AddPrepositions(ParamArray prepositions() As String) Implements IInventory.AddPrepositions
         For Each preposition In prepositions
-            Data.Prepositions.Add(preposition.ToUpper)
+            Data.Prepositions.Add(preposition)
         Next
     End Sub
 
     Public Function HasPreposition(preposition As String) As Boolean Implements IInventory.HasPreposition
-        Return Data.Prepositions.Contains(preposition.ToUpper)
+        Return Data.Prepositions.Any(Function(x) x.Equals(preposition, StringComparison.InvariantCultureIgnoreCase))
     End Function
 
     Public Function FindItemByNoun(noun As String) As IItem Implements IInventory.FindItemByNoun
