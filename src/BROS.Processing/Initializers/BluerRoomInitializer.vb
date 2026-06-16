@@ -1,6 +1,9 @@
 ﻿Imports BROS.Persistence
 
 Friend Module BluerRoomInitializer
+#If DEBUG Then
+    Friend PortalDestination As ILocation = Nothing
+#End If
     Private Sub LegacyInitialize(location As ILocation, frontYard As ILocation)
         location.SetName("The Bluer Room")
         Dim character = location.CreateCharacter(AddressOf InitializeN00b)
@@ -8,6 +11,16 @@ Friend Module BluerRoomInitializer
         Dim exitRoute = location.CreateRoute(Directions.OUT, frontYard, AddressOf InitializeExit)
         frontYard.CreateRoute(Directions.IN, location, AddressOf InitializeEntrance)
         exitRoute.CreateLock(character.FindEquipSlotByNoun(Nouns.BUTTHOLE).Item, AddressOf InitializeExitLock)
+#If DEBUG Then
+        If PortalDestination IsNot Nothing Then
+            location.CreateRoute(Directions.PORTAL, PortalDestination, AddressOf InitializePortal)
+        End If
+#End If
+    End Sub
+
+    Private Sub InitializePortal(route As IRoute)
+        route.SetName("portal")
+        route.SetDescription($"Portal to {PortalDestination.GetName}.")
     End Sub
 
     Private Sub InitializeExitLock(lock As ILock)
@@ -16,12 +29,12 @@ Friend Module BluerRoomInitializer
     End Sub
 
     Private Sub InitializeEntrance(route As IRoute)
-        route.SetName("Entrance to the Bluer Room")
+        route.SetName("entrance")
         route.SetDescription("Through this, you can enter the Bluer Room!")
     End Sub
 
     Private Sub InitializeExit(route As IRoute)
-        route.SetName("Exit from the Bluer Room")
+        route.SetName("exit")
         route.SetDescription("Through this, you can exit the Bluer Room!")
     End Sub
 
@@ -34,7 +47,7 @@ Friend Module BluerRoomInitializer
     End Sub
 
     Private Sub InitializeNote(item As IItem)
-        item.SetName("Note from Yermom")
+        item.SetName("note")
         item.AddNouns(Nouns.NOTE)
         item.SetDescription("The note reads: ""Hello! I woke up this morning to find that my tits were missing! I have gone to look them. - Yermom""")
     End Sub

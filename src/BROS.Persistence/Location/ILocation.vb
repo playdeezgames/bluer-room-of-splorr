@@ -12,4 +12,6 @@
                         Optional initializer As Action(Of IRoute) = Nothing) As IRoute
     ReadOnly Property Exits As IReadOnlyDictionary(Of String, IRoute)
     Function FindRouteByDirection(direction As String) As IRoute
+    Function GetOtherCharacters(character As ICharacter) As IEnumerable(Of ICharacter)
+    Function FindCharacterByNoun(noun As String) As ICharacter
 End Interface

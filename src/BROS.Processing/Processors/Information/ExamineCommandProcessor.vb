@@ -66,7 +66,16 @@ Friend Module ExamineCommandProcessor
         If route IsNot Nothing Then
             Return ProcessExamineRoute(character, route)
         End If
+        Dim otherCharacter = character.Location.FindCharacterByNoun(noun)
+        If otherCharacter IsNot Nothing Then
+            Return ProcessExamineCharacter(character, otherCharacter)
+        End If
         character.AddMessage($"{character.GetName()} sees no `{noun}` here.")
+        Return CommandProcessorResult.Processed
+    End Function
+
+    Private Function ProcessExamineCharacter(character As ICharacter, otherCharacter As ICharacter) As CommandProcessorResult
+        character.DescribeCharacter(otherCharacter)
         Return CommandProcessorResult.Processed
     End Function
 

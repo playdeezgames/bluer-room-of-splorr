@@ -17,6 +17,10 @@ Friend Module CharacterExtensions
         If features.Any Then
             character.AddMessage($"Feature(s): {String.Join(", ", features.Select(Function(x) x.GetName()))}")
         End If
+        Dim otherCharacters = location.GetOtherCharacters(character)
+        If otherCharacters.Any Then
+            character.AddMessage($"Other character(s): {String.Join(", ", otherCharacters.Select(Function(x) x.GetName))}")
+        End If
         Dim exits = location.Exits
         If exits.Any Then
             character.AddMessage($"Exit(s):")
@@ -45,5 +49,9 @@ Friend Module CharacterExtensions
             character.AddMessage($"It is locked with: {lock.GetName}.")
             character.AddMessage(lock.GetDescription())
         End If
+    End Sub
+    <Extension>
+    Friend Sub DescribeCharacter(character As ICharacter, otherCharacter As ICharacter)
+        character.AddMessage(otherCharacter.GetDescription())
     End Sub
 End Module

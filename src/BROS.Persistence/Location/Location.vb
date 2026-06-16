@@ -98,4 +98,12 @@ Friend Class Location
         End If
         Return Nothing
     End Function
+
+    Public Function GetOtherCharacters(character As ICharacter) As IEnumerable(Of ICharacter) Implements ILocation.GetOtherCharacters
+        Return Characters.Where(Function(x) x.CharacterId <> character.CharacterId)
+    End Function
+
+    Public Function FindCharacterByNoun(noun As String) As ICharacter Implements ILocation.FindCharacterByNoun
+        Return Characters.FirstOrDefault(Function(x) x.HasNoun(noun))
+    End Function
 End Class

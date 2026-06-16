@@ -8,5 +8,7 @@
     Friend ReadOnly NOTE As String = "NOTE".ToUpper
     Friend ReadOnly SWALLOW As String = "SWALLOW".ToUpper
     Friend ReadOnly TABLE As String = "TABLE".ToUpper
+    Friend ReadOnly BEGGAR As String = "BEGGAR".ToUpper
+    Friend ReadOnly STREAMBOO As String = "STREAMBOO".ToUpper
 End Module
 
