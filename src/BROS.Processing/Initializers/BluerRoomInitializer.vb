@@ -20,7 +20,9 @@ Friend Module BluerRoomInitializer
 
     Private Sub InitializePortal(route As IRoute)
         route.SetName("portal")
+#If DEBUG Then
         route.SetDescription($"Portal to {PortalDestination.GetName}.")
+#End If
     End Sub
 
     Private Sub InitializeExitLock(lock As ILock)
