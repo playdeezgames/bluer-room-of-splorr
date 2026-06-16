@@ -14,12 +14,12 @@ Friend MustInherit Class BROSEntity(Of TData As BROSEntityData)
     End Sub
 
     Public Function HasNoun(noun As String) As Boolean Implements IBROSEntity.HasNoun
-        Return Data.Nouns.Contains(noun.ToUpper)
+        Return Data.Nouns.Any(Function(x) x.Equals(noun, StringComparison.InvariantCultureIgnoreCase))
     End Function
 
     Public Sub AddNouns(ParamArray nouns() As String) Implements IBROSEntity.AddNouns
         For Each noun In nouns
-            Data.Nouns.Add(noun.ToUpper)
+            Data.Nouns.Add(noun)
         Next
     End Sub
 End Class
