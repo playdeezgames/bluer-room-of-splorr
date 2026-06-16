@@ -56,6 +56,7 @@ Friend Module BluerRoomInitializer
 
     Private Sub InitializeN00b(character As ICharacter)
         character.SetName("Olen Kyrpa")
+        character.AddNouns(Nouns.MYSELF, Nouns.ME)
         character.SetTag(Tags.IS_AVATAR)
         character.CreateEquipSlot(AddressOf InitializeButthole)
         character.World.Avatar = character

@@ -14,7 +14,8 @@ Friend Module Processors
             ("drop", {"Drops an item onto the floor.", "Example:", "    DROP [ITEM]"}, AddressOf DropCommandProcessor.Process),
             ("equipment", {"Shows equipment slots and the equipment thereof.", "Example:", "    EQUIPMENT"}, AddressOf EquipmentCommandProcessor.Process),
             ("go", {"Attempts to move in a particular direction.", "Example:", "    GO [DIRECTION]"}, AddressOf GoCommandProcessor.Process),
-            ("unlock", {"Attempts to unlock a route in a particular direction with a particular item.", "Example:", "    UNLOCK [DIRECTION] WITH [ITEM]"}, AddressOf UnlockCommandProcessor.Process)
+            ("unlock", {"Attempts to unlock a route in a particular direction with a particular item.", "Example:", "    UNLOCK [DIRECTION] WITH [ITEM]"}, AddressOf UnlockCommandProcessor.Process),
+            ("talk", {"Attempts communication with another character.", "Example:", "    TALK TO [CHARACTER]"}, AddressOf TalkCommandProcessor.Process)
         }
     Private ReadOnly processorTable As IReadOnlyDictionary(Of String, Func(Of IWorld, IEnumerable(Of String), CommandProcessorResult)) =
         commandList.ToDictionary(Function(x) x.Command.ToUpper, Function(x) x.Processor)

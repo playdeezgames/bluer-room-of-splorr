@@ -10,5 +10,7 @@
     Friend ReadOnly TABLE As String = "TABLE".ToUpper
     Friend ReadOnly BEGGAR As String = "BEGGAR".ToUpper
     Friend ReadOnly STREAMBOO As String = "STREAMBOO".ToUpper
+    Friend ReadOnly MYSELF As String = "MYSELF".ToUpper
+    Friend ReadOnly [ME] As String = "ME".ToUpper
 End Module
 
