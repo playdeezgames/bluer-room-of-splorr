@@ -37,7 +37,7 @@ Friend Class EquipSlot
 
     Public Sub AddPrepositions(ParamArray prepositions() As String) Implements IBaseInventory.AddPrepositions
         For Each preposition In prepositions
-            Data.Prepositions.Add(preposition.ToUpper)
+            Data.Prepositions.Add(preposition)
         Next
     End Sub
 
@@ -58,6 +58,6 @@ Friend Class EquipSlot
     End Function
 
     Public Function HasPreposition(preposition As String) As Boolean Implements IBaseInventory.HasPreposition
-        Return Data.Prepositions.Contains(preposition.ToUpper)
+        Return Data.Prepositions.Contains(preposition)
     End Function
 End Class
