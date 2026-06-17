@@ -36,6 +36,18 @@ Friend Class Character
         End Get
     End Property
 
+    Private ReadOnly Property Dialogs As IEnumerable(Of IDialog)
+        Get
+            Return Data.DialogIds.Select(Function(x) Dialog.Create(Me, _data, x))
+        End Get
+    End Property
+
+    Public ReadOnly Property CurrentDialog As IDialog Implements ICharacter.CurrentDialog
+        Get
+            Return Dialogs.FirstOrDefault(Function(x) x.RequiredTags.All(Function(y) Me.HasTag(y)))
+        End Get
+    End Property
+
     Friend Shared Function Create(world As IWorld, data As WorldData, characterId As Guid) As ICharacter
         Return New Character(world, data, characterId)
     End Function
@@ -58,5 +70,23 @@ Friend Class Character
 
     Public Function FindEquipSlotByNoun(noun As String) As IEquipSlot Implements ICharacter.FindEquipSlotByNoun
         Return EquipSlots.FirstOrDefault(Function(x) x.HasNoun(noun))
+    End Function
+
+    Public Sub AdvanceDialog() Implements ICharacter.AdvanceDialog
+        Dim dialog = CurrentDialog
+        If dialog Is Nothing Then
+            Return
+        End If
+        SetTags(dialog.AddedTags.ToArray)
+        ClearTags(dialog.RemovedTags.ToArray)
+    End Sub
+
+    Public Function CreateDialog(Optional initializer As Action(Of IDialog) = Nothing) As IDialog Implements ICharacter.CreateDialog
+        Dim dialogId = Guid.NewGuid
+        _data.Dialogs(dialogId) = New DialogData
+        Data.DialogIds.Add(dialogId)
+        Dim result As IDialog = Dialog.Create(Me, _data, dialogId)
+        initializer?.Invoke(result)
+        Return result
     End Function
 End Class

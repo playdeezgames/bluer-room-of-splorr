@@ -12,4 +12,5 @@ Public Class WorldData
     Public Property EquipSlots As New Dictionary(Of Guid, EquipSlotData)
     Public Property Routes As New Dictionary(Of Guid, RouteData)
     Public Property Locks As New Dictionary(Of Guid, LockData)
+    Public Property Dialogs As New Dictionary(Of Guid, DialogData)
 End Class

@@ -24,6 +24,17 @@ Friend Module SouthWestTownInitializer
         character.SetName("beggar")
         character.AddNouns(Nouns.BEGGAR, Nouns.STREAMBOO)
         character.SetDescription("This is Streamboo, the local beggar. He begs.")
-        character.SetGreeting("Streamboo wakes up groggily. You introduce yerself. He tells you that he can provide you with the best viewers, but in exchange he will need a sprite.")
+        character.CreateDialog(AddressOf InitializeSubsequentStreambooGreeting)
+        character.CreateDialog(AddressOf InitializeInitialStreambooGreeting)
+    End Sub
+
+    Private Sub InitializeSubsequentStreambooGreeting(dialog As IDialog)
+        dialog.Message = "Streamboo asks ""Where's my sprite?"""
+        dialog.RequireTags(Tags.INITIAL_GREETING)
+    End Sub
+
+    Private Sub InitializeInitialStreambooGreeting(dialog As IDialog)
+        dialog.Message = "Streamboo wakes up groggily. You introduce yerself. He tells you that he can provide you with the best viewers, but in exchange he will need a sprite."
+        dialog.AddTags(Tags.INITIAL_GREETING)
     End Sub
 End Module

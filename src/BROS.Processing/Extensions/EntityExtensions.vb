@@ -18,12 +18,4 @@ Friend Module EntityExtensions
     Friend Sub SetDescription(entity As IEntity, description As String)
         entity.SetMetadata(Metadatas.DESCRIPTION, description)
     End Sub
-    <Extension>
-    Friend Sub SetGreeting(entity As IEntity, greeting As String)
-        entity.SetMetadata(Metadatas.GREETING, greeting)
-    End Sub
-    <Extension>
-    Friend Function GetGreeting(entity As IEntity) As String
-        Return entity.GetMetadata(Metadatas.GREETING)
-    End Function
 End Module

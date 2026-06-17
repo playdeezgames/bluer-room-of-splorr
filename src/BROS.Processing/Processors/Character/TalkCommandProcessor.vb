@@ -17,7 +17,13 @@ Friend Module TalkCommandProcessor
             character.AddMessage($"{character.GetName()} sees no one called `{noun}` here.")
             Return CommandProcessorResult.Processed
         End If
-        character.AddMessage(target.GetGreeting())
+        Dim dialog = target.CurrentDialog
+        If dialog IsNot Nothing Then
+            character.AddMessage(dialog.Message)
+            target.AdvanceDialog()
+        Else
+            character.AddMessage($"{character.GetName} does not respond.")
+        End If
         Return CommandProcessorResult.Processed
     End Function
 End Module
