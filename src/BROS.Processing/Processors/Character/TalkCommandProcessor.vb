@@ -17,8 +17,7 @@ Friend Module TalkCommandProcessor
             character.AddMessage($"{character.GetName()} sees no one called `{noun}` here.")
             Return CommandProcessorResult.Processed
         End If
-        'TODO: other character response goes here!
-        character.AddMessage($"{target.GetName()} does not respond.")
+        character.AddMessage(target.GetGreeting())
         Return CommandProcessorResult.Processed
     End Function
 End Module
