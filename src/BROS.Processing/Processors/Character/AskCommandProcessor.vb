@@ -18,7 +18,7 @@ Friend Module AskCommandProcessor
             Return CommandProcessorResult.Invalid
         End If
         Dim topicNoun = tokens.Single
-        Dim topic As ITopic = character.FindTopicByNoun(topicNoun)
+        Dim topic As ITopic = target.FindTopicByNoun(topicNoun)
         If topic Is Nothing Then
             character.AddMessage($"{target.GetName} has nothing to say about {topicNoun}.")
             Return CommandProcessorResult.Processed

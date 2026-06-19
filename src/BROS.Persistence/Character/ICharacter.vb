@@ -9,4 +9,7 @@
     Sub AdvanceDialog()
     Function CreateDialog(Optional initializer As Action(Of IDialog) = Nothing) As IDialog
     Function FindTopicByNoun(noun As String) As ITopic
+    Function CreateTopic(
+                        topicName As String,
+                        Optional initializer As Action(Of ITopic) = Nothing) As ITopic
 End Interface

@@ -17,6 +17,27 @@ Friend Module SouthTownInitializer
         character.AddNouns("guard")
         character.SetDescription("This is the guard to the Temple of the Perfect Fit. He is wearing a corset that is too tight, and a little too much rouge. His shapely legs are incredibly hairy and clad in fishnet stockings.")
         character.CreateDialog(AddressOf InitializeTempleGuardDialog)
+        character.CreateTopic(Topics.CORSET, AddressOf InitializeCorsetTopic)
+        character.CreateTopic(Topics.CORSETS, AddressOf InitializeCorsetTopic)
+        character.CreateTopic(Topics.TEMPLE, AddressOf InitializeTempleTopic)
+        character.CreateTopic(Topics.FISHNETS, AddressOf InitializeFishnetsTopic)
+        character.CreateTopic(Topics.HEELS, AddressOf InitializeHeelsTopic)
+    End Sub
+
+    Private Sub InitializeHeelsTopic(topic As ITopic)
+        topic.Message = "If you want to borrow my spare pair, they are in my house in the northwest corner of town. In a box. In the closet. Don't open the trap door."
+    End Sub
+
+    Private Sub InitializeFishnetsTopic(topic As ITopic)
+        topic.Message = "I really prefer wearing fishnets over regular hose, mostly because I don't like shaving my legs."
+    End Sub
+
+    Private Sub InitializeTempleTopic(topic As ITopic)
+        topic.Message = "This is the Temple of the Perfect Fit. We worship the patron diety of squeezing entirely too much flesh into too small of an article of clothing, and looking fabulous while doing so."
+    End Sub
+
+    Private Sub InitializeCorsetTopic(topic As ITopic)
+        topic.Message = "The corset is the ceremonial garb required by all attendees of the Temple of the Perfect Fit. I simply cannot allow you to enter without one."
     End Sub
 
     Private Sub InitializeTempleGuardDialog(dialog As IDialog)

@@ -97,4 +97,13 @@ Friend Class Character
         End If
         Return Nothing
     End Function
+
+    Public Function CreateTopic(topicName As String, Optional initializer As Action(Of ITopic) = Nothing) As ITopic Implements ICharacter.CreateTopic
+        Dim topicId = Guid.NewGuid
+        _data.Topics(topicId) = New TopicData
+        Data.TopicIds(topicName) = topicId
+        Dim result = Topic.Create(World, _data, topicId)
+        initializer?.Invoke(result)
+        Return result
+    End Function
 End Class
