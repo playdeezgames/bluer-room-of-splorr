@@ -3,7 +3,6 @@
 Friend Module SouthWestTownInitializer
     Friend Function Initialize(context As IInitializationContext) As Action(Of ILocation)
         Return Sub(location)
-                   context.PortalDestination = location
                    location.SetName("southwest corner")
                    location.SetDescription("This is the dead-end southwest corner of Quotidian.")
                    location.CreateCharacter(AddressOf InitializeBeggar)
