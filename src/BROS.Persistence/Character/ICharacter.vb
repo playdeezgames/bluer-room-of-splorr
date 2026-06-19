@@ -8,4 +8,5 @@
     ReadOnly Property CurrentDialog As IDialog
     Sub AdvanceDialog()
     Function CreateDialog(Optional initializer As Action(Of IDialog) = Nothing) As IDialog
+    Function FindTopicByNoun(noun As String) As ITopic
 End Interface

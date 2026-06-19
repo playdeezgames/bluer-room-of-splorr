@@ -89,4 +89,12 @@ Friend Class Character
         initializer?.Invoke(result)
         Return result
     End Function
+
+    Public Function FindTopicByNoun(noun As String) As ITopic Implements ICharacter.FindTopicByNoun
+        Dim topicId As Guid
+        If Data.TopicIds.TryGetValue(noun, topicId) Then
+            Return Topic.Create(World, _data, topicId)
+        End If
+        Return Nothing
+    End Function
 End Class
