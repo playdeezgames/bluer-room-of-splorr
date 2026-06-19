@@ -3,7 +3,7 @@
     Friend ReadOnly OUT As String = "out"
     Friend ReadOnly NORTH As String = "north"
     Friend ReadOnly SOUTH As String = "south"
-    Friend ReadOnly PORTAL As String = "portal"
+    Friend ReadOnly SIDEWAYS As String = "sideways"
     Friend ReadOnly EAST As String = "east"
     Friend ReadOnly WEST As String = "west"
 End Module

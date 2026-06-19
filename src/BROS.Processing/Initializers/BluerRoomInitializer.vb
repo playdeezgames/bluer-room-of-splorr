@@ -66,7 +66,7 @@ Friend Module BluerRoomInitializer
                    context.FrontYard.CreateRoute(Directions.IN, location, AddressOf InitializeEntrance)
                    exitRoute.CreateLock(character.FindEquipSlotByNoun(Nouns.BUTTHOLE).Item, AddressOf InitializeExitLock)
                    If context.PortalDestination IsNot Nothing Then
-                       location.CreateRoute(Directions.PORTAL, context.PortalDestination, AddressOf InitializePortal)
+                       location.CreateRoute(Directions.SIDEWAYS, context.PortalDestination, AddressOf InitializePortal)
                    End If
                End Sub
     End Function
