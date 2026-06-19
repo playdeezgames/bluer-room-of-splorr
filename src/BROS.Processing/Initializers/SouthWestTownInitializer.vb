@@ -1,17 +1,16 @@
 ﻿Imports BROS.Persistence
 
 Friend Module SouthWestTownInitializer
-    Friend Function Initialize(southTownLocation As ILocation) As Action(Of ILocation)
+    Friend Function Initialize(context As IInitializationContext) As Action(Of ILocation)
         Return Sub(location)
-#If DEBUG Then
-                   BluerRoomInitializer.PortalDestination = location
-#End If
+                   context.PortalDestination = location
                    location.SetName("southwest corner")
                    location.SetDescription("This is the dead-end southwest corner of Quotidian.")
                    location.CreateCharacter(AddressOf InitializeBeggar)
-                   location.World.CreateLocation(FrontYardInitializer.Initialize(location))
-                   location.CreateRoute(Directions.EAST, southTownLocation, AddressOf InitializeSouthEastRoad)
-                   southTownLocation.CreateRoute(Directions.WEST, location, AddressOf InitializeSouthEastRoad)
+                   context.SouthWestTownLocation = location
+                   location.World.CreateLocation(FrontYardInitializer.Initialize(context))
+                   location.CreateRoute(Directions.EAST, context.SouthTownLocation, AddressOf InitializeSouthEastRoad)
+                   context.SouthTownLocation.CreateRoute(Directions.WEST, location, AddressOf InitializeSouthEastRoad)
                End Sub
     End Function
 

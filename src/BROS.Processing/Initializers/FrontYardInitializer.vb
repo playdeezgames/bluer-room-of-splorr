@@ -1,13 +1,6 @@
 ﻿Imports BROS.Persistence
 
 Friend Module FrontYardInitializer
-    Private Sub LegacyInitialize(location As ILocation, townLocation As ILocation)
-        location.SetName("Front yard")
-        location.CreateFeature(AddressOf InitializeBush)
-        location.World.CreateLocation(BluerRoomInitializer.Initialize(location))
-        location.CreateRoute(Directions.NORTH, townLocation, AddressOf InitializeGate)
-        townLocation.CreateRoute(Directions.SOUTH, location, AddressOf InitializeGate)
-    End Sub
 
     Private Sub InitializeGate(route As IRoute)
         route.SetName("gate")
@@ -30,9 +23,14 @@ Friend Module FrontYardInitializer
         item.SetTag(Tags.LUREABLE)
     End Sub
 
-    Friend Function Initialize(townLocation As ILocation) As Action(Of ILocation)
+    Friend Function Initialize(context As IInitializationContext) As Action(Of ILocation)
         Return Sub(location)
-                   LegacyInitialize(location, townLocation)
+                   location.SetName("Front yard")
+                   location.CreateFeature(AddressOf InitializeBush)
+                   context.FrontYard = location
+                   location.World.CreateLocation(BluerRoomInitializer.Initialize(context))
+                   location.CreateRoute(Directions.NORTH, context.SouthWestTownLocation, AddressOf InitializeGate)
+                   context.SouthWestTownLocation.CreateRoute(Directions.SOUTH, location, AddressOf InitializeGate)
                End Sub
     End Function
 End Module

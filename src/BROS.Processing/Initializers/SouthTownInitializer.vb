@@ -1,12 +1,15 @@
 ﻿Imports BROS.Persistence
 
 Friend Module SouthTownInitializer
-    Friend Sub Initialize(location As ILocation)
-        location.SetName("South End")
-        location.SetDescription("This is the south end of town.")
-        location.World.CreateLocation(SouthWestTownInitializer.Initialize(location))
-        location.CreateCharacter(AddressOf InitializeTempleGuard)
-    End Sub
+    Friend Function Initialize(context As IInitializationContext) As Action(Of ILocation)
+        Return Sub(location As ILocation)
+                   location.SetName("South End")
+                   location.SetDescription("This is the south end of town.")
+                   context.SouthTownLocation = location
+                   location.World.CreateLocation(SouthWestTownInitializer.Initialize(context))
+                   location.CreateCharacter(AddressOf InitializeTempleGuard)
+               End Sub
+    End Function
 
     Private Sub InitializeTempleGuard(character As ICharacter)
         character.SetName("temple guard")

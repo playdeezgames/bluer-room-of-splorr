@@ -1,28 +1,9 @@
 ﻿Imports BROS.Persistence
 
 Friend Module BluerRoomInitializer
-#If DEBUG Then
-    Friend PortalDestination As ILocation = Nothing
-#End If
-    Private Sub LegacyInitialize(location As ILocation, frontYard As ILocation)
-        location.SetName("The Bluer Room")
-        Dim character = location.CreateCharacter(AddressOf InitializeN00b)
-        location.CreateFeature(AddressOf InitializeTable)
-        Dim exitRoute = location.CreateRoute(Directions.OUT, frontYard, AddressOf InitializeExit)
-        frontYard.CreateRoute(Directions.IN, location, AddressOf InitializeEntrance)
-        exitRoute.CreateLock(character.FindEquipSlotByNoun(Nouns.BUTTHOLE).Item, AddressOf InitializeExitLock)
-#If DEBUG Then
-        If PortalDestination IsNot Nothing Then
-            location.CreateRoute(Directions.PORTAL, PortalDestination, AddressOf InitializePortal)
-        End If
-#End If
-    End Sub
-
     Private Sub InitializePortal(route As IRoute)
         route.SetName("portal")
-#If DEBUG Then
-        route.SetDescription($"Portal to {PortalDestination.GetName}.")
-#End If
+        route.SetDescription($"Portal to {route.DestinationLocation.GetName}.")
     End Sub
 
     Private Sub InitializeExitLock(lock As ILock)
@@ -76,9 +57,17 @@ Friend Module BluerRoomInitializer
         item.SetDescription("This key smells like poop. I wonder why. Quit sniffing it, and maybe go wash yer hands.")
     End Sub
 
-    Friend Function Initialize(frontYard As ILocation) As Action(Of ILocation)
+    Friend Function Initialize(context As IInitializationContext) As Action(Of ILocation)
         Return Sub(location)
-                   LegacyInitialize(location, frontYard)
+                   location.SetName("The Bluer Room")
+                   Dim character = location.CreateCharacter(AddressOf InitializeN00b)
+                   location.CreateFeature(AddressOf InitializeTable)
+                   Dim exitRoute = location.CreateRoute(Directions.OUT, context.FrontYard, AddressOf InitializeExit)
+                   context.FrontYard.CreateRoute(Directions.IN, location, AddressOf InitializeEntrance)
+                   exitRoute.CreateLock(character.FindEquipSlotByNoun(Nouns.BUTTHOLE).Item, AddressOf InitializeExitLock)
+                   If context.PortalDestination IsNot Nothing Then
+                       location.CreateRoute(Directions.PORTAL, context.PortalDestination, AddressOf InitializePortal)
+                   End If
                End Sub
     End Function
 End Module
