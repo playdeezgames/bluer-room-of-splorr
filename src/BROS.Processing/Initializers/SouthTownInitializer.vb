@@ -9,12 +9,20 @@ Friend Module SouthTownInitializer
                    context.SouthTownLocation = location
                    location.World.CreateLocation(SouthWestTownInitializer.Initialize(context))
                    location.CreateCharacter(AddressOf InitializeTempleGuard)
+                   Dim feature = location.CreateFeature(AddressOf UtilityInitializers.InitializeFloor)
+                   feature.Inventory.CreateItem(AddressOf InitializeKlart)
                End Sub
     End Function
 
+    Private Sub InitializeKlart(item As IItem)
+        item.SetName("klart")
+        item.AddNouns(Nouns.KLART, Nouns.SHIT)
+        item.SetDescription("This is a piece of klart, which is another word for shit. Poop, crap. Caca. The stuff that comes out of butts without having to be placed there deliberately. If you eat it, you will die.")
+    End Sub
+
     Private Sub InitializeTempleGuard(character As ICharacter)
         character.SetName("temple guard")
-        character.AddNouns("guard")
+        character.AddNouns(Nouns.GUARD)
         character.SetDescription("This is the guard to the Temple of the Perfect Fit. He is wearing a corset that is too tight, and a little too much rouge. His shapely legs are incredibly hairy and clad in fishnet stockings.")
         character.CreateDialog(AddressOf InitializeTempleGuardDialog)
         character.CreateTopic(Topics.CORSET, AddressOf InitializeCorsetTopic)
