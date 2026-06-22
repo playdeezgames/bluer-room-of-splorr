@@ -47,6 +47,7 @@ Friend Module BluerRoomInitializer
         equipSlot.SetName("butthole")
         equipSlot.AddNouns(Nouns.BUTTHOLE)
         equipSlot.AddPrepositions(Prepositions.IN)
+        equipSlot.SetEquipSlotType(EquipSlotTypes.RECTUM)
         equipSlot.SetDescription("It's a butthole. It looks kinda like this: *.")
         equipSlot.CreateItem(AddressOf InitializeKey)
     End Sub
@@ -54,6 +55,7 @@ Friend Module BluerRoomInitializer
     Private Sub InitializeKey(item As IItem)
         item.SetName("Ass-Key")
         item.AddNouns(Nouns.ASSKEY, Nouns.KEY)
+        item.SetEquippable(EquipSlotTypes.RECTUM)
         item.SetDescription("This key smells like poop. I wonder why. Quit sniffing it, and maybe go wash yer hands.")
     End Sub
 
