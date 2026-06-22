@@ -22,7 +22,7 @@ Friend Module GiveCommandProcessor
             character.AddMessage($"{character.GetName} sees no one called `{characterNoun}` here.")
             Return CommandProcessorResult.Processed
         End If
-        If Not target.Inventory.CanAccept(item) Then
+        If Not target.CanAccept(item) Then
             character.AddMessage($"{target.GetName} will not take {item.GetName}.")
             Return CommandProcessorResult.Processed
         End If

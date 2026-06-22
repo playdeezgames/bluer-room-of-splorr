@@ -54,4 +54,15 @@ Friend Module CharacterExtensions
     Friend Sub DescribeCharacter(character As ICharacter, otherCharacter As ICharacter)
         character.AddMessage(otherCharacter.GetDescription())
     End Sub
+    Private Function GetAcceptTag(item As IItem) As String
+        Return $"accept-{item.ItemId}"
+    End Function
+    <Extension>
+    Friend Function CanAccept(character As ICharacter, item As IItem) As Boolean
+        Return character.HasTag(GetAcceptTag(item))
+    End Function
+    <Extension>
+    Friend Sub Accept(character As ICharacter, item As IItem)
+        character.SetTag(GetAcceptTag(item))
+    End Sub
 End Module
