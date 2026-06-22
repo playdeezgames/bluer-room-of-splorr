@@ -12,4 +12,5 @@
     Function CreateTopic(
                         topicName As String,
                         Optional initializer As Action(Of ITopic) = Nothing) As ITopic
+    ReadOnly Property Topics As IEnumerable(Of String)
 End Interface

@@ -5,4 +5,5 @@
     Friend ReadOnly FISHNETS As String = "fishnets"
     Friend ReadOnly HEELS As String = "heels"
     Friend ReadOnly SPRITE As String = "sprite"
+    Friend ReadOnly TOPICS As String = "topics"
 End Module

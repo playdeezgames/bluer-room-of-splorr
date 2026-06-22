@@ -18,12 +18,25 @@ Friend Module AskCommandProcessor
             Return CommandProcessorResult.Invalid
         End If
         Dim topicNoun = tokens.Single
+        If topicNoun.Equals(Topics.TOPICS, StringComparison.InvariantCultureIgnoreCase) Then
+            Return AskAboutTopics(character, target)
+        End If
         Dim topic As ITopic = target.FindTopicByNoun(topicNoun)
         If topic Is Nothing Then
             character.AddMessage($"{target.GetName} has nothing to say about {topicNoun}.")
             Return CommandProcessorResult.Processed
         End If
         character.AddMessage(topic.Message)
+        Return CommandProcessorResult.Processed
+    End Function
+
+    Private Function AskAboutTopics(character As ICharacter, target As ICharacter) As CommandProcessorResult
+        Dim topics = target.Topics
+        If Not topics.Any Then
+            character.AddMessage($"{target.GetName} has nothing to talk about.")
+            Return CommandProcessorResult.Processed
+        End If
+        character.AddMessage($"{target.GetName()} will talk about: {String.Join(", ", topics)}.")
         Return CommandProcessorResult.Processed
     End Function
 End Module

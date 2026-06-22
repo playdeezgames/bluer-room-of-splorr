@@ -48,6 +48,12 @@ Friend Class Character
         End Get
     End Property
 
+    Public ReadOnly Property Topics As IEnumerable(Of String) Implements ICharacter.Topics
+        Get
+            Return Data.TopicIds.Keys.Order(StringComparer.InvariantCultureIgnoreCase)
+        End Get
+    End Property
+
     Friend Shared Function Create(world As IWorld, data As WorldData, characterId As Guid) As ICharacter
         Return New Character(world, data, characterId)
     End Function
