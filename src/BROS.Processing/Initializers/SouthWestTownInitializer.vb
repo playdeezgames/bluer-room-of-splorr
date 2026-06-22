@@ -28,7 +28,7 @@ Friend Module SouthWestTownInitializer
     End Sub
 
     Private Sub InitializeSpriteTopic(topic As ITopic)
-        topic.Message = "Sprites are my favorite. First, I like to pull off their wings and crunch on them for a minute as the creature wails. Then I bite its head off, and quickly shove the rest of it into my mouth while the nerves a still firing in its death throes."
+        topic.Message = "Sprites are my favorite. First, I like to pull off their wings and crunch on them for a minute as the creature wails. Then I bite its head off, and quickly shove the rest of it into my mouth while the nerves are still firing in its death throes."
     End Sub
 
     Private Sub InitializeSubsequentStreambooGreeting(dialog As IDialog)
