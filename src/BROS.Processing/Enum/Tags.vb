@@ -4,4 +4,5 @@
     Friend ReadOnly QUITTABLE As String = NameOf(QUITTABLE)
     Friend ReadOnly INITIAL_GREETING As String = NameOf(INITIAL_GREETING)
     Friend ReadOnly EDIBLE As String = NameOf(EDIBLE)
+    Friend ReadOnly DEAD As String = NameOf(DEAD)
 End Module

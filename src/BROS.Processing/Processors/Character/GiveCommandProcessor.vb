@@ -7,6 +7,10 @@ Friend Module GiveCommandProcessor
         End If
         Dim itemNoun = tokens.Dequeue
         Dim character = world.Avatar
+        If character.IsDead Then
+            character.AddMessage("Dead people don't give things. Mostly they just lay there until the scavengers show up.")
+            Return CommandProcessorResult.Processed
+        End If
         Dim item = character.Inventory.FindItemByNoun(itemNoun)
         If item Is Nothing Then
             character.AddMessage($"{character.GetName} has no item called `{itemNoun}`.")

@@ -7,6 +7,10 @@ Friend Module GoCommandProcessor
             Return CommandProcessorResult.Invalid
         End If
         Dim character = world.Avatar
+        If character.IsDead Then
+            character.AddMessage("Dead people don't go anywhere. They are already gone.")
+            Return CommandProcessorResult.Processed
+        End If
         Dim location = character.Location
         Dim direction = tokens.First
         Dim route = location.FindRouteByDirection(direction)

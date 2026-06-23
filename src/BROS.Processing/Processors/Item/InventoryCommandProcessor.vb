@@ -6,6 +6,10 @@ Friend Module InventoryCommandProcessor
             Return CommandProcessorResult.Invalid
         End If
         Dim character = world.Avatar
+        If character.IsDead Then
+            character.AddMessage("Dead people don't have inventory. They have `personal effects`.")
+            Return CommandProcessorResult.Processed
+        End If
         Dim items = character.Inventory.Items
         If Not items.Any Then
             character.AddMessage($"{character.GetName} is carrying no items.")

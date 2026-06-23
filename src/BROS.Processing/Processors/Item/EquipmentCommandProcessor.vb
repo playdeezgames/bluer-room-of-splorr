@@ -6,6 +6,10 @@ Friend Module EquipmentCommandProcessor
             Return CommandProcessorResult.Invalid
         End If
         Dim character = world.Avatar
+        If character.IsDead Then
+            character.AddMessage("Dead people don't have equipment. They have loot. For others to take.")
+            Return CommandProcessorResult.Processed
+        End If
         character.AddMessage($"{character.GetName}'s Equipment:")
         For Each equipSlot In character.EquipSlots
             Dim item = equipSlot.Item

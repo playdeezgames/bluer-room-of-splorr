@@ -7,6 +7,10 @@ Friend Module EatCommandProcessor
         End If
         Dim itemNoun = tokens.Dequeue
         Dim character = world.Avatar
+        If character.IsDead Then
+            character.AddMessage("Dead people don't eat things. Likely you died of eating something.")
+            Return CommandProcessorResult.Processed
+        End If
         Dim item = character.Inventory.FindItemByNoun(itemNoun)
         If item Is Nothing Then
             character.AddMessage($"{character.GetName} has no `{itemNoun}`.")
@@ -17,8 +21,8 @@ Friend Module EatCommandProcessor
             Return CommandProcessorResult.Processed
         End If
         character.AddMessage($"{character.GetName} eats {item.GetName}.")
+        character.Eat(item)
         item.Destroy()
-        'TODO: effect of eating the item
         Return CommandProcessorResult.Processed
     End Function
 End Module

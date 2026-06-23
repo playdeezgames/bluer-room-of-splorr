@@ -6,13 +6,18 @@ Friend Module ExamineCommandProcessor
             Return CommandProcessorResult.Invalid
         End If
         Dim noun = tokens.Dequeue
+        Dim character = world.Avatar
+        If Character.IsDead Then
+            Character.AddMessage("Dead people don't ask things.")
+            Return CommandProcessorResult.Processed
+        End If
         Select Case tokens.Count
             Case 0
-                Return ProcessExamineDirect(world.Avatar, noun)
+                Return ProcessExamineDirect(character, noun)
             Case 2
                 Dim preposition = tokens.Dequeue
                 Dim containerNoun = tokens.Single
-                Return ProcessExamineContainer(world.Avatar, containerNoun, preposition, noun)
+                Return ProcessExamineContainer(character, containerNoun, preposition, noun)
             Case Else
                 Return CommandProcessorResult.Invalid
         End Select

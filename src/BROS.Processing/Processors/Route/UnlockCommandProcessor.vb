@@ -7,6 +7,10 @@ Friend Module UnlockCommandProcessor
         End If
         Dim direction = tokens.Dequeue
         Dim character = world.Avatar
+        If character.IsDead Then
+            character.AddMessage("Dead people don't unlock things. They've unlocked the final mystery, and would have been disappointed.")
+            Return CommandProcessorResult.Processed
+        End If
         Dim route As IRoute = character.Location.FindRouteByDirection(direction)
         If route Is Nothing Then
             character.AddMessage($"{character.GetName()} sees nothing going {direction}.")

@@ -11,6 +11,10 @@ Friend Module TalkCommandProcessor
         End If
         Dim noun = tokens.Single
         Dim character = world.Avatar
+        If character.IsDead Then
+            character.AddMessage("Dead people don't talk. And here I thought you'd never shut up!")
+            Return CommandProcessorResult.Processed
+        End If
         Dim location = character.Location
         Dim target = location.FindCharacterByNoun(noun)
         If target Is Nothing Then

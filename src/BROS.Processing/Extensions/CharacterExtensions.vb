@@ -65,4 +65,32 @@ Friend Module CharacterExtensions
     Friend Sub Accept(character As ICharacter, item As IItem)
         character.SetTag(GetAcceptTag(item))
     End Sub
+    Private eatHandlers As IReadOnlyDictionary(Of String, Action(Of ICharacter, IItem)) =
+        New Dictionary(Of String, Action(Of ICharacter, IItem)) From
+        {
+            {Nouns.KLART, AddressOf EatKlart},
+            {Nouns.SHIT, AddressOf EatKlart}
+        }
+
+    Private Sub EatKlart(character As ICharacter, item As IItem)
+        character.AddMessage($"{character.GetName()} dies.")
+        character.Die()
+    End Sub
+    <Extension>
+    Friend Sub Eat(character As ICharacter, item As IItem)
+        Dim itemNoun = eatHandlers.Keys.FirstOrDefault(AddressOf item.HasNoun)
+        If itemNoun IsNot Nothing Then
+            eatHandlers(itemNoun).Invoke(character, item)
+        Else
+            character.AddMessage("Nothing happens.")
+        End If
+    End Sub
+    <Extension>
+    Friend Sub Die(character As ICharacter)
+        character.SetTag(Tags.DEAD)
+    End Sub
+    <Extension>
+    Friend Function IsDead(character As ICharacter) As Boolean
+        Return character.HasTag(Tags.DEAD)
+    End Function
 End Module

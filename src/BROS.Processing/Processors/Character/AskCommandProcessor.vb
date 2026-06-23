@@ -7,6 +7,10 @@ Friend Module AskCommandProcessor
         End If
         Dim characterNoun = tokens.Dequeue
         Dim character = world.Avatar
+        If character.IsDead Then
+            character.AddMessage("Dead people don't ask things.")
+            Return CommandProcessorResult.Processed
+        End If
         Dim location = character.Location
         Dim target = location.FindCharacterByNoun(characterNoun)
         If target Is Nothing Then

@@ -12,6 +12,10 @@ Friend Module TakeCommandProcessor
         End If
         Dim containerNoun = tokens.Single
         Dim character = world.Avatar
+        If character.IsDead Then
+            character.AddMessage("Dead people don't take things. They also don't leave things. They already left everything.")
+            Return CommandProcessorResult.Processed
+        End If
         Dim feature = character.Location.FindFeatureByNoun(containerNoun)
         If feature IsNot Nothing Then
             Return TakeFromFeature(noun, character, feature)

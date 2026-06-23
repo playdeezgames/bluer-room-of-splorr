@@ -6,6 +6,10 @@ Friend Module DropCommandProcessor
             Return CommandProcessorResult.Invalid
         End If
         Dim character = world.Avatar
+        If character.IsDead Then
+            character.AddMessage("Dead people don't drop things. Except for dropping dead. Which you already did. Work complete.")
+            Return CommandProcessorResult.Processed
+        End If
         Dim noun = tokens.Single
         Dim item = character.Inventory.FindItemByNoun(noun)
         If item Is Nothing Then

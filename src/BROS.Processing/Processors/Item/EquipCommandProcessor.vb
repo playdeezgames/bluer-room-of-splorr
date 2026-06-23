@@ -7,6 +7,10 @@ Friend Module EquipCommandProcessor
         End If
         Dim itemNoun = tokens.Dequeue
         Dim character = world.Avatar
+        If character.IsDead Then
+            character.AddMessage("Dead people don't equip things, but other people can dress you in silly clothing, put you in a boat, douse you with flammable liquids, etc.")
+            Return CommandProcessorResult.Processed
+        End If
         Dim item = character.Inventory.FindItemByNoun(itemNoun)
         If item Is Nothing Then
             character.AddMessage($"{character.GetName} is not carrying anything called `{itemNoun}`.")
