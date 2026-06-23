@@ -6,4 +6,5 @@
     Friend ReadOnly HEELS As String = "heels"
     Friend ReadOnly SPRITE As String = "sprite"
     Friend ReadOnly TOPICS As String = "topics"
+    Friend ReadOnly CAGE As String = "cage"
 End Module

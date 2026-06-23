@@ -7,6 +7,9 @@ Friend Module TownCenterInitializer
                    location.SetDescription("This is the center of town.")
                    context.TownCenterLocation = location
                    location.World.CreateLocation(SouthTownInitializer.Initialize(context))
+                   location.World.CreateLocation(NorthTownInitializer.Initialize(context))
+                   location.World.CreateLocation(EastTownInitializer.Initialize(context))
+                   location.World.CreateLocation(WestTownInitializer.Initialize(context))
                    location.CreateFeature(AddressOf InitializeShrine)
                End Sub
     End Function

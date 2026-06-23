@@ -29,6 +29,12 @@ Friend Class InitializationContext
 
     Public Property TownCenterLocation As ILocation Implements IInitializationContext.TownCenterLocation
 
+    Public Property NorthTownLocation As ILocation Implements IInitializationContext.NorthTownLocation
+
+    Public Property EastTownLocation As ILocation Implements IInitializationContext.EastTownLocation
+
+    Public Property WestTownLocation As ILocation Implements IInitializationContext.WestTownLocation
+
     Friend Shared Function Create(world As IWorld) As IInitializationContext
         Return New InitializationContext(world)
     End Function

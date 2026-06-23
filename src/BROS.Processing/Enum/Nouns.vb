@@ -17,5 +17,6 @@
     Friend ReadOnly SHIT As String = "shit"
     Friend ReadOnly SHRINE As String = "shrine"
     Friend ReadOnly STREAMBOO As String = "streamboo"
+    Friend ReadOnly VENDOR As String = "vendor"
 End Module
 
