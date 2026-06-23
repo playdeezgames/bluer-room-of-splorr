@@ -4,6 +4,7 @@
     Friend ReadOnly BIRD As String = "bird"
     Friend ReadOnly BUSH As String = "bush"
     Friend ReadOnly BUTTHOLE As String = "butthole"
+    Friend ReadOnly BUTTPLUG As String = "buttplug"
     Friend ReadOnly FLOOR As String = "floor"
     Friend ReadOnly GUARD As String = "guard"
     Friend ReadOnly KEY As String = "key"
@@ -14,6 +15,7 @@
     Friend ReadOnly SWALLOW As String = "swallow"
     Friend ReadOnly TABLE As String = "table"
     Friend ReadOnly SHIT As String = "shit"
+    Friend ReadOnly SHRINE As String = "shrine"
     Friend ReadOnly STREAMBOO As String = "streamboo"
 End Module
 
