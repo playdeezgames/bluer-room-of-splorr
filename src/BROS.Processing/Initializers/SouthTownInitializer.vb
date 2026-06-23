@@ -7,12 +7,19 @@ Friend Module SouthTownInitializer
                    location.SetName("South End")
                    location.SetDescription("This is the south end of town.")
                    context.SouthTownLocation = location
+                   location.CreateRoute(Directions.NORTH, context.TownCenterLocation, AddressOf TownCenterRoute)
+                   context.TownCenterLocation.CreateRoute(Directions.SOUTH, location, AddressOf TownCenterRoute)
                    location.World.CreateLocation(SouthWestTownInitializer.Initialize(context))
                    location.CreateCharacter(AddressOf InitializeTempleGuard)
                    Dim feature = location.CreateFeature(AddressOf UtilityInitializers.InitializeFloor)
                    feature.Inventory.CreateItem(AddressOf InitializeKlart)
                End Sub
     End Function
+
+    Private Sub TownCenterRoute(route As IRoute)
+        route.SetName("road")
+        route.SetDescription("This is a road between the south end of town and the town center.")
+    End Sub
 
     Private Sub InitializeKlart(item As IItem)
         item.SetName("klart")

@@ -3,7 +3,7 @@
 Friend Module WorldInitializer
     Friend Sub InitializeWorld(world As IWorld)
         world.Abandon()
-        Dim southTown = world.CreateLocation(SouthTownInitializer.Initialize(InitializationContext.Create(world)))
+        Dim townCenter = world.CreateLocation(TownCenterInitializer.Initialize(InitializationContext.Create(world)))
         Embark(world)
     End Sub
 

@@ -6,4 +6,5 @@ Friend Interface IInitializationContext
     Property SouthTownLocation As ILocation
     Property SouthWestTownLocation As ILocation
     Property FrontYard As ILocation
+    Property TownCenterLocation As ILocation
 End Interface

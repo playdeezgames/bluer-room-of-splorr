@@ -27,6 +27,8 @@ Friend Class InitializationContext
 
     Public Property FrontYard As ILocation Implements IInitializationContext.FrontYard
 
+    Public Property TownCenterLocation As ILocation Implements IInitializationContext.TownCenterLocation
+
     Friend Shared Function Create(world As IWorld) As IInitializationContext
         Return New InitializationContext(world)
     End Function
