@@ -2,6 +2,7 @@
     Friend ReadOnly ASSKEY As String = "ass-key"
     Friend ReadOnly BEGGAR As String = "beggar"
     Friend ReadOnly BIRD As String = "bird"
+    Friend ReadOnly BOARD As String = "board"
     Friend ReadOnly BUSH As String = "bush"
     Friend ReadOnly BUTTHOLE As String = "butthole"
     Friend ReadOnly BUTTPLUG As String = "buttplug"
@@ -18,5 +19,7 @@
     Friend ReadOnly SHRINE As String = "shrine"
     Friend ReadOnly STREAMBOO As String = "streamboo"
     Friend ReadOnly VENDOR As String = "vendor"
+    Friend ReadOnly POSTING As String = "posting"
+    Friend ReadOnly JOB As String = "job"
 End Module
 
