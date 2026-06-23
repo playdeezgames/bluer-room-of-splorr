@@ -63,4 +63,9 @@ Friend Class Item
             New Item(world, data, itemId.Value),
             Nothing)
     End Function
+
+    Public Sub Destroy() Implements IItem.Destroy
+        RemoveFromInventoryAndEquipSlot()
+        _data.Items.Remove(ItemId)
+    End Sub
 End Class

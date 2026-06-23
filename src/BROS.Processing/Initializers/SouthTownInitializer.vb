@@ -17,6 +17,7 @@ Friend Module SouthTownInitializer
     Private Sub InitializeKlart(item As IItem)
         item.SetName("klart")
         item.AddNouns(Nouns.KLART, Nouns.SHIT)
+        item.SetEdible()
         item.SetDescription("This is a piece of klart, which is another word for shit. Poop, crap. Caca. The stuff that comes out of butts without having to be placed there deliberately. If you eat it, you will die.")
     End Sub
 
