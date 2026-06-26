@@ -44,7 +44,7 @@ Friend Class Route
         Return New Route(world, data, routeId.Value)
     End Function
 
-    Public Function CreateLock(item As IItem, Optional initializer As Action(Of ILock) = Nothing) As ILock Implements IRoute.CreateLock
+    Public Function CreateLock(item As IItem, Optional initializer As LockInitializer = Nothing) As ILock Implements IRoute.CreateLock
         Dim lockId = Guid.NewGuid
         _data.Locks(lockId) = New LockData With
             {

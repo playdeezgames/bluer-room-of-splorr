@@ -59,7 +59,7 @@ Friend Module BluerRoomInitializer
         item.SetDescription("This key smells like poop. I wonder why. Quit sniffing it, and maybe go wash yer hands.")
     End Sub
 
-    Friend Function Initialize(context As IInitializationContext) As Action(Of ILocation)
+    Friend Function Initialize(context As IInitializationContext) As LocationInitializer
         Return Sub(location)
                    location.SetName("The Bluer Room")
                    Dim character = location.CreateCharacter(AddressOf InitializeN00b)

@@ -35,7 +35,7 @@ Friend Class Location
         End Get
     End Property
 
-    Public Function CreateCharacter(Optional initializer As Action(Of ICharacter) = Nothing) As ICharacter Implements ILocation.CreateCharacter
+    Public Function CreateCharacter(Optional initializer As CharacterInitializer = Nothing) As ICharacter Implements ILocation.CreateCharacter
         Dim characterId = Guid.NewGuid
         _data.Characters(characterId) = New CharacterData With
             {
@@ -55,7 +55,7 @@ Friend Class Location
         Return New Location(world, data, locationId)
     End Function
 
-    Public Function CreateFeature(Optional initializer As Action(Of IFeature) = Nothing) As IFeature Implements ILocation.CreateFeature
+    Public Function CreateFeature(Optional initializer As FeatureInitializer = Nothing) As IFeature Implements ILocation.CreateFeature
         Dim featureId = Guid.NewGuid
         _data.Features(featureId) = New FeatureData With
             {
@@ -75,7 +75,7 @@ Friend Class Location
         Return Features.FirstOrDefault(Function(x) x.HasNoun(noun))
     End Function
 
-    Public Function CreateRoute(direction As String, destination As ILocation, Optional initializer As Action(Of IRoute) = Nothing) As IRoute Implements ILocation.CreateRoute
+    Public Function CreateRoute(direction As String, destination As ILocation, Optional initializer As RouteInitializer = Nothing) As IRoute Implements ILocation.CreateRoute
         Dim routeId = Guid.NewGuid
         _data.Routes(routeId) = New RouteData With
             {

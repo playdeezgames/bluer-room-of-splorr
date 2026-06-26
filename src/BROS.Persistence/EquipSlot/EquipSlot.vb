@@ -48,7 +48,7 @@ Friend Class EquipSlot
         Return New EquipSlot(world, data, equipSlotId.Value)
     End Function
 
-    Public Function CreateItem(initializer As Action(Of IItem)) As IItem Implements IEquipSlot.CreateItem
+    Public Function CreateItem(initializer As ItemInitializer) As IItem Implements IEquipSlot.CreateItem
         Dim itemId As Guid = Guid.NewGuid
         _data.Items(itemId) = New ItemData
         Dim result = Persistence.Item.Create(World, _data, itemId)

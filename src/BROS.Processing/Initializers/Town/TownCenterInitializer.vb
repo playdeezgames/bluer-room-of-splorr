@@ -1,7 +1,7 @@
 ﻿Imports BROS.Persistence
 
 Friend Module TownCenterInitializer
-    Friend Function Initialize(context As IInitializationContext) As Action(Of ILocation)
+    Friend Function Initialize(context As IInitializationContext) As LocationInitializer
         Return Sub(location)
                    location.SetName("Town Center")
                    location.SetDescription("This is the center of town.")

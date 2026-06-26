@@ -1,7 +1,7 @@
 ﻿Imports BROS.Persistence
 
 Friend Module SouthTownInitializer
-    Friend Function Initialize(context As IInitializationContext) As Action(Of ILocation)
+    Friend Function Initialize(context As IInitializationContext) As LocationInitializer
         Return Sub(location As ILocation)
                    context.PortalDestination = location
                    location.SetName("South End")

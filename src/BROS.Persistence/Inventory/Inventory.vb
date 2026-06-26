@@ -36,7 +36,7 @@ Friend Class Inventory
         Return New Inventory(world, data, inventoryId.Value)
     End Function
 
-    Public Function CreateItem(Optional initializer As Action(Of IItem) = Nothing) As IItem Implements IInventory.CreateItem
+    Public Function CreateItem(Optional initializer As ItemInitializer = Nothing) As IItem Implements IInventory.CreateItem
         Dim itemId As Guid = Guid.NewGuid
         _data.Items(itemId) = New ItemData
         Dim result = Item.Create(world, _data, itemId)

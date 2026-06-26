@@ -1,7 +1,7 @@
 ﻿Imports BROS.Persistence
 
 Friend Module SouthWestTownInitializer
-    Friend Function Initialize(context As IInitializationContext) As Action(Of ILocation)
+    Friend Function Initialize(context As IInitializationContext) As LocationInitializer
         Return Sub(location)
                    location.SetName("southwest corner")
                    location.SetDescription("This is the dead-end southwest corner of Quotidian.")

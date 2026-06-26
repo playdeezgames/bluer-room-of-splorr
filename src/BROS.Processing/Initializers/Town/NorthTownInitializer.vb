@@ -1,7 +1,7 @@
 ﻿Imports BROS.Persistence
 
 Friend Module NorthTownInitializer
-    Friend Function Initialize(context As IInitializationContext) As Action(Of ILocation)
+    Friend Function Initialize(context As IInitializationContext) As LocationInitializer
         Return Sub(location)
                    location.SetName("North End")
                    location.SetDescription("This is the north end of town.")

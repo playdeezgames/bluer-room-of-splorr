@@ -23,7 +23,7 @@ Friend Module FrontYardInitializer
         item.SetTag(Tags.LUREABLE)
     End Sub
 
-    Friend Function Initialize(context As IInitializationContext) As Action(Of ILocation)
+    Friend Function Initialize(context As IInitializationContext) As LocationInitializer
         Return Sub(location)
                    location.SetName("Front yard")
                    location.CreateFeature(AddressOf InitializeBush)

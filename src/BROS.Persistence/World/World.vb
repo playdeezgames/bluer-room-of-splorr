@@ -48,7 +48,7 @@ Public Class World
         Data.Characters.Clear()
     End Sub
 
-    Public Function CreateLocation(Optional initializer As Action(Of ILocation) = Nothing) As ILocation Implements IWorld.CreateLocation
+    Public Function CreateLocation(Optional initializer As LocationInitializer = Nothing) As ILocation Implements IWorld.CreateLocation
         Dim locationId As Guid = Guid.NewGuid
         Data.Locations(locationId) = New LocationData()
         Dim result = Location.Create(Me, Data, locationId)

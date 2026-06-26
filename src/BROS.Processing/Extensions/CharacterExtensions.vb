@@ -1,6 +1,6 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports BROS.Persistence
-
+Friend Delegate Sub ItemUseHandler(character As ICharacter, item As IItem)
 Friend Module CharacterExtensions
     <Extension>
     Friend Sub AddMessage(character As ICharacter, text As String, Optional mood As String = Nothing, Optional newLine As Boolean = True)
@@ -65,8 +65,8 @@ Friend Module CharacterExtensions
     Friend Sub Accept(character As ICharacter, item As IItem)
         character.SetTag(GetAcceptTag(item))
     End Sub
-    Private eatHandlers As IReadOnlyDictionary(Of String, Action(Of ICharacter, IItem)) =
-        New Dictionary(Of String, Action(Of ICharacter, IItem)) From
+    Private eatHandlers As IReadOnlyDictionary(Of String, ItemUseHandler) =
+        New Dictionary(Of String, ItemUseHandler) From
         {
             {Nouns.KLART, AddressOf EatKlart},
             {Nouns.SHIT, AddressOf EatKlart}
