@@ -58,7 +58,7 @@ Friend Class Character
         Return New Character(world, data, characterId)
     End Function
 
-    Public Function CreateEquipSlot(initializer As Action(Of IEquipSlot)) As IEquipSlot Implements ICharacter.CreateEquipSlot
+    Public Function CreateEquipSlot(initializer As EquipSlotInitializer) As IEquipSlot Implements ICharacter.CreateEquipSlot
         Dim equipSlotId = Guid.NewGuid
         _data.EquipSlots(equipSlotId) = New EquipSlotData With
             {
@@ -87,7 +87,7 @@ Friend Class Character
         ClearTags(dialog.RemovedTags.ToArray)
     End Sub
 
-    Public Function CreateDialog(Optional initializer As Action(Of IDialog) = Nothing) As IDialog Implements ICharacter.CreateDialog
+    Public Function CreateDialog(Optional initializer As DialogInitializer = Nothing) As IDialog Implements ICharacter.CreateDialog
         Dim dialogId = Guid.NewGuid
         _data.Dialogs(dialogId) = New DialogData
         Data.DialogIds.Add(dialogId)
@@ -104,7 +104,7 @@ Friend Class Character
         Return Nothing
     End Function
 
-    Public Function CreateTopic(topicName As String, Optional initializer As Action(Of ITopic) = Nothing) As ITopic Implements ICharacter.CreateTopic
+    Public Function CreateTopic(topicName As String, Optional initializer As TopicInitializer = Nothing) As ITopic Implements ICharacter.CreateTopic
         Dim topicId = Guid.NewGuid
         _data.Topics(topicId) = New TopicData
         Data.TopicIds(topicName) = topicId

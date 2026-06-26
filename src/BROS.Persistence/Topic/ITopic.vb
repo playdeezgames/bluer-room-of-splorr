@@ -1,4 +1,5 @@
-﻿Public Interface ITopic
+﻿Public Delegate Sub TopicInitializer(topic As ITopic)
+Public Interface ITopic
     ReadOnly Property TopicId As Guid
     Property Message As String
     ReadOnly Property World As IWorld

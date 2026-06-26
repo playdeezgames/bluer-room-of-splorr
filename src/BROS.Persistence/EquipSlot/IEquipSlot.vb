@@ -1,4 +1,5 @@
-﻿Public Interface IEquipSlot
+﻿Public Delegate Sub EquipSlotInitializer(equipSlot As IEquipSlot)
+Public Interface IEquipSlot
     Inherits IBaseInventory
     Inherits IBROSEntity
     Function CreateItem(initializer As Action(Of IItem)) As IItem

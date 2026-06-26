@@ -1,4 +1,5 @@
-﻿Public Interface IDialog
+﻿Public Delegate Sub DialogInitializer(dialog As IDialog)
+Public Interface IDialog
     ReadOnly Property DialogId As Guid
     Property Message As String
     ReadOnly Property RequiredTags As IEnumerable(Of String)
