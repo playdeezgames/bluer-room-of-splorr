@@ -1,3 +1,4 @@
+﻿Public Delegate Function DialogSource() As IDialog
 ﻿Public Interface IDialog
     ReadOnly Property DialogId As Guid
     Property Message As String
