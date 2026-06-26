@@ -4,7 +4,7 @@ Imports TGGD.Presentation
 Friend Class InPlayDialog
     Inherits ExitableModelDialog(Of IDisplayContext, IWorldModel)
 
-    Private Sub New(context As IDisplayContext, model As IWorldModel, exitDialog As Func(Of IDialog))
+    Private Sub New(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource)
         MyBase.New(context, model, exitDialog)
     End Sub
 
@@ -24,7 +24,7 @@ Friend Class InPlayDialog
         Return New InPlayDialog(Context, Model, ExitDialog)
     End Function
 
-    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, exitDialog As Func(Of IDialog)) As Func(Of IDialog)
+    Friend Shared Function Launch(context As IDisplayContext, model As IWorldModel, exitDialog As DialogSource) As DialogSource
         Return Function() New InPlayDialog(context, model, exitDialog)
     End Function
 End Class
